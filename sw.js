@@ -1,6 +1,6 @@
 /* Asystent Radnego — Service Worker. Update CACHE_TAG and DATA_FILENAME with each published dataset. */
-const CACHE_TAG='asystent-radnego-1.60.0-20261031';
-const ASSETS=['./','./index.html','./manifest.webmanifest','./version.json','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-maskable-512.png','./data/katalog-v1.60.0.html.gz'];
+const CACHE_TAG='asystent-radnego-1.60.1-ui';
+const ASSETS=['./','./index.html','./manifest.webmanifest','./version.json','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-maskable-512.png','./data/katalog-v1.60.1.html.gz'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE_TAG).then(async c=>{
  await Promise.all(ASSETS.map(async asset=>{let r=await fetch(asset,{cache:'reload'});if(!r.ok)throw Error('Nie można zapisać PWA: '+asset);await c.put(asset,r)}));
  self.skipWaiting();

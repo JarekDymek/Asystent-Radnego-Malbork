@@ -51,7 +51,7 @@ const status=(message,level='info')=>{
  box.hidden=false;box.className=level==='warn'?'warn':level==='error'?'error':'';
  box.textContent=message;document.body.classList.add('has-message');
 };
-const label=(m)=>{q('versionLabel').textContent='Malbork · baza '+m.version+' · '+(m.published||'')};
+const label=(m)=>{q('versionLabel').textContent='Malbork · aplikacja '+m.version+' · dane '+(m.data_version||m.version)};
 const normalizedPath=p=>{if(!/^([a-zA-Z0-9_\-./]+)$/.test(p)||p.startsWith('/')||p.includes('..'))throw Error('Nieprawidłowa ścieżka pakietu');return base+p};
 async function getVersion(){
  const u=base+'version.json?check='+Date.now();
