@@ -1,0 +1,18 @@
+{
+  "version": "1.60.0",
+  "revision": "2026-10-31",
+  "published": "2026-10-31",
+  "dataset": "IX kadencja Rady Miasta Malborka · Audyt Uchwał",
+  "payload": "data/katalog-v1.60.0.html.gz",
+  "payload_sha256": "96d3bac97b40ec8286b1600732179ed8e96e63bda45a8c4358f9b9f1176c8d8c",
+  "database": "data/katalog-operacyjny-v1.60.0.sqlite.gz",
+  "database_sha256": "93b5b26ef3ec0ac218bcf18b89ea48482f90368bf34822052d5cd8b8594ce606",
+  "statistics": {
+    "interpelacje": 817,
+    "odpowiedzi": 677,
+    "glosowania": 336,
+    "glosy_imienne": 6207,
+    "uchwaly": 249,
+    "akty_audytu": 251
+  }
+}
