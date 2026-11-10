@@ -1,20 +1,45 @@
 {
-  "version": "1.60.1",
-  "revision": "2026-10-31",
-  "published": "2026-10-31",
+  "version": "1.61.0",
+  "revision": "2026-11-10",
+  "published": "2026-11-10",
   "dataset": "IX kadencja Rady Miasta Malborka · Audyt Uchwał",
-  "payload": "data/katalog-v1.60.1.html.gz",
-  "payload_sha256": "215c04461d612178510b0b39b90e6feec4509307ce08fec242a28658eba54513",
-  "database": "data/katalog-operacyjny-v1.60.0.sqlite.gz",
-  "database_sha256": "93b5b26ef3ec0ac218bcf18b89ea48482f90368bf34822052d5cd8b8594ce606",
+  "payload": "data/katalog-v1.61.0.html.gz",
+  "payload_sha256": "6c3c1594842de033b63e3fafb268482e0477673c2e34a6ba50828ae7f8570854",
+  "database": "data/katalog-operacyjny-v1.61.0.sqlite.gz",
+  "database_sha256": "fba2d5a145f9accb584fa6f9bee2c5a9af09f08ddb9666e01b88fb2d1ff206ac",
   "statistics": {
     "interpelacje": 817,
-    "odpowiedzi": 677,
+    "odpowiedzi": 709,
     "glosowania": 336,
     "glosy_imienne": 6207,
     "uchwaly": 249,
     "akty_audytu": 251
   },
-  "ui_version": "1.60.1",
-  "data_version": "1.60.0"
+  "ui_version": "1.61.0",
+  "data_version": "1.61.0",
+  "recent_update": {
+    "id": "MAIL-20261110",
+    "date": "2026-11-10",
+    "heading": "Nowe odpowiedzi na interpelacje",
+    "new_letters": 32,
+    "linked_letters": 30,
+    "linked_cases": 32,
+    "unmatched_letters": 2,
+    "summary": "Z poczty Rady Miasta dodano metadane 32 nowych pism; 30 przypisano do konkretnych interpelacji. Pełne teksty 55 zeskanowanych stron wymagają dalszej transkrypcji.",
+    "notice": "Baza zaktualizowana. Do pełnego zamknięcia potrzebna jest transkrypcja i rozstrzygnięcie 2 nieprzypisanych pism.",
+    "samples": [
+      {
+        "person": "Marta Dorobek",
+        "topic": "RedLight i spotkania o autyzmie"
+      },
+      {
+        "person": "Jarosław Dymek",
+        "topic": "Bezpieczeństwo przy szkołach i Park Kieszonkowy"
+      },
+      {
+        "person": "Małgorzata Sobczak",
+        "topic": "Zadłużenie zasobu komunalnego"
+      }
+    ]
+  }
 }

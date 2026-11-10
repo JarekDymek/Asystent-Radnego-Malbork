@@ -28,6 +28,10 @@ body.has-message #appFrame{height:calc(100dvh - 98px)}
 #placeholder{position:fixed;inset:65px 0 0;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;background:#f5f7fa;color:#24425e;padding:25px;text-align:center;z-index:1}
 #placeholder p{max-width:470px;line-height:1.6}.loader{height:40px;width:40px;border:4px solid #cee0eb;border-top-color:#175c8e;border-radius:50%;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
 @media(max-width:470px){#appHeader{gap:7px;padding-inline:8px}#appHeader img{width:33px;height:33px}.brand strong{font-size:12px}.brand small{font-size:10px}.btn{padding:7px 8px;font-size:12px;min-height:36px}}
+
+.new-data-panel{position:fixed;z-index:50;top:65px;left:0;right:0;max-height:75vh;overflow-y:auto;background:#ebf5ff;color:#14314c;border-bottom:3px solid #2b739d;box-shadow:0 8px 28px #0004;padding:14px}
+.new-data-inner{max-width:780px;margin:auto;line-height:1.5}.new-data-inner h2{margin:.2em 0}.new-data-inner #closeNews{float:right}.new-data-inner p{margin:8px 0}.new-data-inner ul{padding-left:22px}.new-data-inner small{color:#48647b}
+@media(max-width:450px){#newDataButton{font-size:11px;padding:6px}.brand strong{font-size:11px}.new-data-panel{top:65px}}
 </style>
 </head>
 <body>
@@ -35,9 +39,11 @@ body.has-message #appFrame{height:calc(100dvh - 98px)}
  <img alt="Ikona Asystent Radnego" src="./icons/icon-192.png">
  <div class="brand"><strong>Asystent Radnego</strong><small id="versionLabel">Malbork · sprawdzanie bazy…</small></div>
  <button type="button" class="btn install" id="installButton" hidden>Zainstaluj</button>
+ <button type="button" class="btn new" id="newDataButton" hidden>Nowe dane</button>
  <button type="button" class="btn" id="updateButton" aria-live="polite">Odśwież</button>
 </header>
 <div id="message" role="status" hidden></div>
+<section id="newDataPanel" class="new-data-panel" hidden role="region" aria-label="Informacje o aktualizacji bazy"><div class="new-data-inner"><button type="button" id="closeNews" class="btn">Zamknij / przeczytane</button><h2 id="newsTitle"></h2><p id="newsSummary"></p><p id="newsNotice"></p><ul id="newsSamples"></ul><small>Oryginały źródeł są w prywatnej Bibliotece. Tu udostępniane są tylko metadane.</small></div></section>
 <div id="placeholder"><div class="loader" role="progressbar" aria-label="Wczytywanie bazy"></div><strong>Otwieranie katalogu Rady Miasta Malborka</strong><p>Wczytuję zweryfikowaną bazę interpelacji, głosowań i uchwał. Po pierwszym uruchomieniu aplikacja działa również bez internetu.</p></div>
 <iframe title="Wyszukiwarka i audyt uchwał" id="appFrame" loading="eager"></iframe>
 <script>
@@ -62,6 +68,21 @@ async function getVersion(){
  normalizedPath(m.payload);
  return m;
 }
+
+function showLatestNews(m){
+ const a=m.recent_update;const b=q('newDataButton');
+ if(!a)return;
+ b.hidden=false;b.textContent='Nowe dane ('+a.new_letters+')';
+ q('newsTitle').textContent=a.heading+' · '+a.date;
+ q('newsSummary').textContent=a.summary;
+ q('newsNotice').textContent=a.notice;
+ const list=q('newsSamples');list.textContent='';
+ for(const x of a.samples||[]){const li=document.createElement('li');li.textContent=x.person+': '+x.topic;list.appendChild(li)}
+ if(localStorage.getItem('asm_read_update')!==a.id){q('newDataPanel').hidden=false;b.classList.add('new')}
+ b.onclick=()=>{q('newDataPanel').hidden=!q('newDataPanel').hidden};
+ q('closeNews').onclick=()=>{q('newDataPanel').hidden=true;localStorage.setItem('asm_read_update',a.id);b.classList.remove('new');b.textContent='Zmiany bazy'};
+}
+
 async function loadData(m){
  if(typeof DecompressionStream!=='function')throw Error('Wymagana aktualna przeglądarka Chrome/Edge (obsługa gzip)');
  const r=await fetch(normalizedPath(m.payload));
@@ -78,7 +99,7 @@ async function loadData(m){
  activeVersion=m.version;
  latest=m;updateAvailable=false;
  q('updateButton').textContent='Odśwież';q('updateButton').classList.remove('new');
- q('placeholder').hidden=true;label(m);
+ q('placeholder').hidden=true;label(m);showLatestNews(m);
  status(!navigator.onLine?'Tryb offline. Używasz ostatniej zapisanej wersji bazy.':'');
 }
 async function checkUpdates({quiet=false,apply=false}={}){
