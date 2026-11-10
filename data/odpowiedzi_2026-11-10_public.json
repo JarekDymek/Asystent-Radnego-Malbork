@@ -1,0 +1,578 @@
+{
+  "revision": "2026-11-10",
+  "source_label": "Biuro Rady Miasta Malborka, odpowiedzi przesłane 10 listopada 2026 r.",
+  "mail_date": "2026-11-10",
+  "source_pdf_pages": 55,
+  "letters_count": 32,
+  "verified_case_links": 30,
+  "verified_links_total": 32,
+  "unmatched_letters": 2,
+  "publication_note": "Publicznie prezentowane są jedynie dane katalogowe i ostrożne streszczenia. Zeskanowane oryginały i korespondencja pozostają w prywatnej Bibliotece.",
+  "letters": [
+    {
+      "id": "MAIL-ODP-20261110-P01",
+      "letter_date": "2026-11-05",
+      "session": "XXXVI",
+      "councillor": "Tomasz Klonowski",
+      "topic": "Przyłączenie Orzeszkowej 5A do sieci ciepłowniczej",
+      "question_ids": [
+        "INT-XXXVI-IX54-01"
+      ],
+      "pdf_pages": [
+        1
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P02",
+      "letter_date": "2026-11-03",
+      "session": "XXXVI",
+      "councillor": "Tomasz Klonowski",
+      "topic": "Wkład własny miasta w inwestycję mieszkaniową",
+      "question_ids": [
+        "INT-XXXVI-IX54-02"
+      ],
+      "pdf_pages": [
+        2
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P03",
+      "letter_date": "2026-11-06",
+      "session": "XXXVI",
+      "councillor": "Tomasz Klonowski",
+      "topic": "Murale upamiętniające 22. Bazę Lotnictwa Taktycznego",
+      "question_ids": [
+        "INT-XXXVI-IX54-03"
+      ],
+      "pdf_pages": [
+        3,
+        4
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P05",
+      "letter_date": "2026-11-04",
+      "session": "XXXVI",
+      "councillor": "Tomasz Klonowski",
+      "topic": "System kaucyjny, opłaty komunalne i przetwarzanie odpadów",
+      "question_ids": [
+        "INT-XXXVI-IX54-04"
+      ],
+      "pdf_pages": [
+        5,
+        6,
+        7
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "Pismo Burmistrza i załączone dokumenty ZGKiM dotyczą zadłużenia lokali, zasobu mieszkaniowego i odzyskiwania należności. Pełna transkrypcja dokumentów źródłowych nie została wykonana.",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P08",
+      "letter_date": "2026-11-05",
+      "session": "XXXVI",
+      "councillor": "Małgorzata Sobczak",
+      "topic": "Zadłużenie oraz zasób mieszkań komunalnych i socjalnych",
+      "question_ids": [
+        "INT-XXXVI-IX54-05"
+      ],
+      "pdf_pages": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P13",
+      "letter_date": "2026-11-04",
+      "session": "XXXVI",
+      "councillor": "Małgorzata Sobczak",
+      "topic": "Roślinność na chodnikach i skrzyżowaniach",
+      "question_ids": [
+        "INT-XXXVI-IX54-06"
+      ],
+      "pdf_pages": [
+        13,
+        14
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P15",
+      "letter_date": "2026-11-03",
+      "session": "XXXVI",
+      "councillor": "Zbigniew Kowalski",
+      "topic": "Naprawa drogi przy ul. Żelaznej",
+      "question_ids": [
+        "INT-XXXVI-IX54-07"
+      ],
+      "pdf_pages": [
+        15
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P16",
+      "letter_date": "2026-11-05",
+      "session": "XXXVI",
+      "councillor": "Wioletta Klepacka",
+      "topic": "Realizacja opieki wytchnieniowej",
+      "question_ids": [
+        "INT-XXXVI-IX54-09"
+      ],
+      "pdf_pages": [
+        16,
+        17,
+        18,
+        19
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P20",
+      "letter_date": "2026-11-05",
+      "session": "XXXVI",
+      "councillor": "Dorota Raczkowska",
+      "topic": "Funkcjonowanie i bezpieczeństwo skateparku",
+      "question_ids": [
+        "INT-XXXVI-IX54-10"
+      ],
+      "pdf_pages": [
+        20
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P21",
+      "letter_date": "2026-11-05",
+      "session": "XXXVI",
+      "councillor": "Dorota Raczkowska",
+      "topic": "Profilaktyka uzależnień — kampania informacyjna",
+      "question_ids": [],
+      "pdf_pages": [
+        21,
+        22
+      ],
+      "review_status": "odczytano pismo; brak jednoznacznej interpelacji w indeksie",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P23",
+      "letter_date": "2026-11-03",
+      "session": "XXXVI",
+      "councillor": "Ewa Karamon",
+      "topic": "Spotkanie w sprawie RedLight i organizacji ruchu",
+      "question_ids": [
+        "INT-XXXVI-IX54-11"
+      ],
+      "pdf_pages": [
+        23
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P24",
+      "letter_date": "2026-11-04",
+      "session": "XXXVI",
+      "councillor": "Bożena Piątkowska",
+      "topic": "Porządkowanie gruntów przy Mederii",
+      "question_ids": [
+        "INT-XXXVI-IX54-12"
+      ],
+      "pdf_pages": [
+        24
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P25",
+      "letter_date": "2026-11-05",
+      "session": "XXXVI",
+      "councillor": "Bożena Piątkowska",
+      "topic": "Współpraca partnerska z Włodzimierzem, korespondencja władz",
+      "question_ids": [
+        "INT-XXXVI-IX54-13"
+      ],
+      "pdf_pages": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P29",
+      "letter_date": "2026-11-03",
+      "session": "XXXVI",
+      "councillor": "Monika Sobczyńska",
+      "topic": "Prace drogowe i remontowe — Ceglana",
+      "question_ids": [
+        "INT-XXXVI-IX54-14"
+      ],
+      "pdf_pages": [
+        29
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P30",
+      "letter_date": "2026-11-04",
+      "session": "XXXVI",
+      "councillor": "Monika Sobczyńska",
+      "topic": "Pas zieleni przy ul. Bukowej",
+      "question_ids": [
+        "INT-XXXVI-IX54-15"
+      ],
+      "pdf_pages": [
+        30
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P31",
+      "letter_date": "2026-11-04",
+      "session": "XXXVI",
+      "councillor": "Monika Sobczyńska",
+      "topic": "Straż Miejska — organizacja, wynagrodzenia i patrole",
+      "question_ids": [
+        "INT-XXXVI-IX54-16"
+      ],
+      "pdf_pages": [
+        31,
+        32
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P33",
+      "letter_date": "2026-11-06",
+      "session": "XXXVI",
+      "councillor": "Monika Sobczyńska",
+      "topic": "Centrum Opiekuńczo-Mieszkalne i wsparcie dorosłych osób z autyzmem",
+      "question_ids": [
+        "INT-XXXVI-IX54-17"
+      ],
+      "pdf_pages": [
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P38",
+      "letter_date": "2026-11-03",
+      "session": "XXXVI",
+      "councillor": "Adam Ilarz",
+      "topic": "Przejazd rowerowy Kotarbińskiego–Kwiatkowskiego",
+      "question_ids": [
+        "INT-XXXVI-IX54-18"
+      ],
+      "pdf_pages": [
+        38
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P39",
+      "letter_date": "2026-11-04",
+      "session": "XXXVI",
+      "councillor": "Adam Ilarz",
+      "topic": "Oświetlenie wiaduktu i rejonu Międzytorza",
+      "question_ids": [
+        "INT-XXXVI-IX54-19"
+      ],
+      "pdf_pages": [
+        39
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P40",
+      "letter_date": "2026-11-04",
+      "session": "XXXVI",
+      "councillor": "Adam Ilarz",
+      "topic": "Zmiana zasad naliczania opłat za gospodarowanie odpadami",
+      "question_ids": [],
+      "pdf_pages": [
+        40,
+        41
+      ],
+      "review_status": "odczytano pismo; brak jednoznacznej interpelacji w indeksie",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P42",
+      "letter_date": "2026-11-04",
+      "session": "XXXVI",
+      "councillor": "Dariusz Kowalczyk",
+      "topic": "Sprawy sądowe prowadzone przeciwko gminie",
+      "question_ids": [
+        "INT-XXXVI-IX54-21"
+      ],
+      "pdf_pages": [
+        42,
+        43
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P44",
+      "letter_date": "2026-11-03",
+      "session": "XXXVI",
+      "councillor": "Joanna Iglińska",
+      "topic": "Przejście dla pieszych przy ul. Michałowskiego",
+      "question_ids": [
+        "INT-XXXVI-IX54-22"
+      ],
+      "pdf_pages": [
+        44
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P45",
+      "letter_date": "2026-11-06",
+      "session": "XXXVI",
+      "councillor": "Joanna Iglińska",
+      "topic": "Podniesienie studzienek przy ul. Konopnickiej 66",
+      "question_ids": [
+        "INT-XXXVI-IX54-24"
+      ],
+      "pdf_pages": [
+        45
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "Podniesienie studzienek przy Konopnickiej 66 ma nastąpić po sprawdzeniu możliwości technicznych i ustaleniu odpowiedzialności za zadanie.",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P46",
+      "letter_date": "2026-11-04",
+      "session": "XXXVI",
+      "councillor": "Joanna Iglińska",
+      "topic": "Podcięcie gałęzi drzew przy Sienkiewicza i Konopnickiej",
+      "question_ids": [
+        "INT-XXXVI-IX54-23"
+      ],
+      "pdf_pages": [
+        46
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "Podcięcie gałęzi przy Sienkiewicza i Konopnickiej zapowiedziano do 31 marca 2027 r., z zastrzeżeniem pogody i przepisów o ochronie przyrody.",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P47",
+      "letter_date": "2026-11-03",
+      "session": "XXXVI",
+      "councillor": "Marta Dorobek",
+      "topic": "RedLight — oznakowanie skrzyżowania Rodła–17 Marca",
+      "question_ids": [
+        "INT-XXXVI-IX54-27"
+      ],
+      "pdf_pages": [
+        47
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "Burmistrz: w połowie października skierowano pismo do GDDKiA o zajęcie stanowiska. Kampania informacyjna zostanie rozważona po uzyskaniu stanowiska Dyrekcji.",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P48",
+      "letter_date": "2026-11-05",
+      "session": "XXXVI",
+      "councillor": "Marta Dorobek",
+      "topic": "Udział władz miasta w spotkaniach o wsparciu osób z autyzmem",
+      "question_ids": [
+        "INT-XXXVI-IX54-28"
+      ],
+      "pdf_pages": [
+        48
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "Burmistrz deklaruje, że zastępcy lub merytoryczni pracownicy Urzędu uczestniczą w spotkaniach, a informacje o nich są mu przekazywane.",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P49",
+      "letter_date": "2026-11-03",
+      "session": "XXXVI",
+      "councillor": "Paweł Dziwosz",
+      "topic": "Dokończenie chodnika przy ul. Akacjowej",
+      "question_ids": [
+        "INT-XXXVI-IX54-31"
+      ],
+      "pdf_pages": [
+        49
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P50",
+      "letter_date": "2026-11-04",
+      "session": "XXXVI",
+      "councillor": "Paweł Dziwosz",
+      "topic": "Ławka przy ul. Michałowskiego / Wybickiego",
+      "question_ids": [
+        "INT-XXXVI-IX54-32"
+      ],
+      "pdf_pages": [
+        50
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P51",
+      "letter_date": "2026-11-02",
+      "session": "XXXVI",
+      "councillor": "Jacek Markowski",
+      "topic": "Udrożnienie studzienek deszczowych na ul. Sienkiewicza",
+      "question_ids": [
+        "INT-XXXVI-IX54-34"
+      ],
+      "pdf_pages": [
+        51
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P52",
+      "letter_date": "2026-11-04",
+      "session": "XXXVI",
+      "councillor": "Jacek Markowski",
+      "topic": "Usunięcie odpadów z ul. Sienkiewicza 54",
+      "question_ids": [
+        "INT-XXXVI-IX54-35"
+      ],
+      "pdf_pages": [
+        52
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P53",
+      "letter_date": "2026-11-03",
+      "session": "XXXVI",
+      "councillor": "Jarosław Dymek",
+      "topic": "Organizacja ruchu na Jagiellońskiej, RedLight i bezpieczne przejścia przy szkołach",
+      "question_ids": [
+        "INT-XXXVI-IX54-36",
+        "INT-XXXVI-IX54-37",
+        "INT-XXXVI-IX54-38"
+      ],
+      "pdf_pages": [
+        53,
+        54
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "Pismo odpowiada łącznie na kwestie parkowania na Jagiellońskiej, stanowisk dotyczących RedLight oraz bezpiecznych przejść przy SP1 i I LO. Dwie przebudowy przejść są na końcowym etapie dokumentacji projektowej; zakres obejmuje doświetlenie i udogodnienia dla osób z niepełnosprawnością ruchową.",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    },
+    {
+      "id": "MAIL-ODP-20261110-P55",
+      "letter_date": "2026-11-04",
+      "session": "XXXVI",
+      "councillor": "Jarosław Dymek",
+      "topic": "Park Kieszonkowy Południe — interwencje Straży Miejskiej",
+      "question_ids": [
+        "INT-XXXVI-IX54-39"
+      ],
+      "pdf_pages": [
+        55
+      ],
+      "review_status": "potwierdzono i powiązano z interpelacją",
+      "fulltext_status": "brak warstwy tekstowej; pełna transkrypcja wymagana",
+      "brief_summary": "Burmistrz informuje, że Straż Miejska kontroluje Park Kieszonkowy na os. Południe, wystawia pouczenia i kieruje wnioski o patrole Policji. Zapowiada dalsze działania.",
+      "source_kind": "dokument urzędowy z pakietu Biura Rady"
+    }
+  ]
+}
