@@ -81,7 +81,7 @@ function changePage(v){page=v;selected=null;draw()}
 document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>changePage(b.dataset.page)));
 function href(url){try{let u=new URL(url);return ['http:','https:'].includes(u.protocol)?u.href:''}catch{return''}}
 function canon(url){try{let u=new URL(url);u.hash='';u.hostname=u.hostname.toLowerCase().replace(/^www\./,'');u.pathname=u.pathname.replace(/\/+$/,'').replace(/%2c/ig,',');for(const k of [...u.searchParams.keys()])if(k.startsWith('utm_')||['fbclid','gclid'].includes(k))u.searchParams.delete(k);u.searchParams.sort();return u.toString()}catch{return String(url||'').trim().toLowerCase()}}
-function signature(s){return JSON.stringify([s.title?.trim(),s.type?.trim(),canon(s.url),s.session?.trim(),s.digest||''])}
+function signature(s){return JSON.stringify([s.title?.trim(),s.type?.trim(),canon(s.url),s.session?.trim(),s.digest||'',s.sourceState||''])}
 function domHash(s){let h=2166136261;for(let c of signature(s)){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return(h>>>0).toString(16).padStart(8,'0')}
 function statusClass(s){return s.includes('ręcznej')?'ręcznej':s.includes('oczekujące')?'oczekujące':s}
 function pill(s){return `<span class="pill ${enc(statusClass(s))}">${enc(s)}</span>`}
@@ -95,9 +95,9 @@ function addRecords(records,origin='import',kind='źródła'){let created=0,chan
  const key=canon(raw.url||'')||raw.externalId||raw.title.toLowerCase();
  if(seen.has(key)){dup++;continue}seen.add(key);
  let existing=db.sources.find(x=>(raw.externalId&&x.externalId===raw.externalId)||(raw.url&&canon(x.url)===canon(raw.url)));
- if(existing){const probe={...existing,title:raw.title||existing.title,type:sourceType(raw.type||existing.type),url:href(raw.url)||existing.url,session:raw.session||existing.session,digest:raw.digest||existing.digest};
+ if(existing){const probe={...existing,title:raw.title||existing.title,type:sourceType(raw.type||existing.type),url:href(raw.url)||existing.url,session:raw.session||existing.session,digest:raw.digest||existing.digest,sourceState:raw.sourceState||existing.sourceState};
  if(domHash(probe)===domHash(existing)){dup++;continue}
- Object.assign(existing,{previous:{title:existing.title,url:existing.url,type:existing.type,session:existing.session,digest:existing.digest},title:probe.title,url:probe.url,type:probe.type,session:probe.session,digest:probe.digest,updatedAt:now(),compareState:'zmienione',verified:false,verifiedAt:'',lock:false,independent:false,includePublication:false,status:'wymagające ręcznej kontroli',issue:'Wykryto zmianę metadanych źródła; ponowna weryfikacja',revision:(existing.revision||0)+1});changed++;continue}
+ Object.assign(existing,{previous:{title:existing.title,url:existing.url,type:existing.type,session:existing.session,digest:existing.digest},title:probe.title,url:probe.url,type:probe.type,session:probe.session,digest:probe.digest,sourceState:probe.sourceState,updatedAt:now(),compareState:'zmienione',verified:false,verifiedAt:'',lock:false,independent:false,includePublication:false,status:'wymagające ręcznej kontroli',issue:'Wykryto zmianę metadanych źródła; ponowna weryfikacja',revision:(existing.revision||0)+1});changed++;continue}
  db.sources.push(item(raw,origin));created++;
  }
  db.batches.unshift({id:bid,time:now(),origin,kind,created,changed,duplicates:dup,total:records.length,masterVersion:db.masterVersion});event('import',`${origin}: nowych ${created}, zmienionych ${changed}, pominiętych ${dup}`,bid);persist();draw();notify(`Partia ${bid}: ${created} nowych, ${changed} zmienionych, ${dup} duplikatów`)}
@@ -213,7 +213,7 @@ async function importFile(file){try{const lower=file.name.toLowerCase();if(lower
 if(!sheets.Zrodla)throw Error('Nie znaleziono arkusza Zrodla');
 const firstMaster=!db.masterFile;let v=(sheets.START||[]).find(x=>Object.values(x).includes('Wersja bazy'));db.masterVersion=v?.Wartość||v?.B||'wersja nieustalona';db.masterFile=file.name;
 const readMap=new Map((sheets.Rejestr_Odczytu||[]).map(x=>[x.Dokument_ID,x]));
-let records=sheets.Zrodla.map(r=>({externalId:r.Źródło_ID||r.Zrodlo_ID,title:r.Tytuł_lub_lokalizator,type:r.Typ,session:r.Sesja_ID,url:r.URL_lub_file_id,priority:r.Priorytet,status:r.Status,notes:r.Uwagi,legacyProcessed:!!r.Status?.toLowerCase().includes('przetworzony')||!!readMap.has(r.Źródło_ID)}));
+let records=sheets.Zrodla.map(r=>({externalId:r.Źródło_ID||r.Zrodlo_ID,title:r.Tytuł_lub_lokalizator,type:r.Typ,session:r.Sesja_ID,url:r.URL_lub_file_id,priority:r.Priorytet,status:r.Status,sourceState:r.Status,notes:r.Uwagi,legacyProcessed:!!r.Status?.toLowerCase().includes('przetworzony')||!!readMap.has(r.Źródło_ID)}));
 if(!db.checkpointAt){db.checkpoint={};db.checkpointAt=now()}
 const gapIndex=new Set(db.gaps.map(g=>g.externalId));for(let r of(sheets.Braki||[])){if(!r.Brak_ID||gapIndex.has(r.Brak_ID))continue;db.gaps.push({id:id(),externalId:r.Brak_ID,scope:r.Zakres||'',desc:r.Opis||'',expected:r.Oczekiwane_źródło||'',originalStatus:r.Status||'',mismatch:/niespójn|rozbieżn|niezgodno/.test((r.Status||'').toLowerCase()),closed:/zamknięt|przetworzony(?! z brakami)/.test((r.Status||'').toLowerCase())})}
 const bfIndex=new Set(db.backfill.map(g=>g.scope));for(let r of(sheets.Kolejka_Backfill_przekazanie||[])){if(!r.Zakres||bfIndex.has(r.Zakres))continue;db.backfill.push({id:id(),scope:r.Zakres,priority:r.Priorytet||'P2',diagnosis:r['Diagnoza ze źródeł']||'',action:r['Działanie w wątku Backfill IX']||'',originalStatus:r.Status||'',closed:/potwierdzone|ukończon|zamknięt/.test((r.Status||'').toLowerCase())})}
