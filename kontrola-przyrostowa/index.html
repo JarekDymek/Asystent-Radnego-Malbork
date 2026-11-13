@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Kontrola przyrostowa Asystenta Radnego · Malbork IX kadencja</title>
+<style>
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:#152339;background:#f3f6fb;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}a{color:#1354ab}
+button{cursor:pointer;border:0;border-radius:9px;padding:10px 14px;font-weight:650;background:#e8eef7;color:#183353}
+button:hover{filter:brightness(.965)}button:disabled{opacity:.47;cursor:not-allowed}.primary{background:#135bc2;color:white}.danger{background:#ffe3e2;color:#a52020}.ok{background:#def5e8;color:#146342}.outline{border:1px solid #cfdaea;background:white}.tiny{padding:6px 9px;font-size:12px}
+.top{background:#102139;color:white;padding:16px clamp(14px,3vw,36px);display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px}.crest{border:1px solid #6681a7;border-radius:12px;padding:11px 12px;font-size:21px}.brand h1{font-size:20px;line-height:1.18;margin:0}.brand p{font-size:12px;color:#bccddd;margin:4px 0 0}
+.toplinks{display:flex;gap:9px;flex-wrap:wrap}.toplinks a{color:#d8e8ff;text-decoration:none;border:1px solid #56718f;padding:9px 11px;border-radius:8px;font-size:13px}
+.app{max-width:1510px;margin:auto;padding:22px clamp(12px,2.6vw,32px) 48px}
+.banner{background:#e8f0ff;color:#1c477e;border:1px solid #c1d5fb;border-radius:12px;padding:13px 15px;font-size:13px;margin-bottom:18px;line-height:1.5}
+.alert{padding:11px 14px;border-radius:10px;background:#fff4da;border:1px solid #f3d18d;color:#6a4910;margin:12px 0;font-size:13px}
+.alert.error{background:#fff0f0;color:#a12020;border-color:#ebaeae}.alert.good{background:#e7f7ed;color:#19623b;border-color:#a9dcbc}
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.stat{padding:17px;background:white;border:1px solid #dfe6ef;border-radius:14px;min-width:0;box-shadow:0 3px 15px #16314c08}
+.stat .n{font-weight:800;font-size:28px;letter-spacing:-.7px}.stat small{display:block;color:#64758b;margin-top:3px;font-size:12px;line-height:1.35}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.bar button{font-size:13px}.bar button.active{background:#153c72;color:white}
+.panel{border:1px solid #dce4ee;background:white;border-radius:14px;box-shadow:0 3px 15px #16314c09;padding:17px;margin-bottom:15px}
+.headline{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px}.headline h2{font-size:18px;margin:0}.muted{color:#61728a;font-size:13px}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-bottom:14px}
+input,textarea,select{background:#fff;color:#1f3045;border:1px solid #bfcbd9;border-radius:8px;padding:10px;min-width:0}
+input[type=checkbox]{width:16px;height:16px;accent-color:#135bc2}input[type=file]{max-width:260px}
+textarea{width:100%;resize:vertical;min-height:90px}
+.controls input[type=search]{flex:1;min-width:200px}.controls select{max-width:260px}
+.tablewrap{overflow:auto;max-height:65vh;border:1px solid #e7edf4;border-radius:10px}table{width:100%;border-collapse:collapse;min-width:790px;font-size:13px}td,th{padding:11px 10px;text-align:left;vertical-align:top;border-bottom:1px solid #e8edf4}th{background:#f3f6fa;font-size:12px;color:#51657d;position:sticky;top:0;z-index:1}
+tr:hover td{background:#f9fbff}.ellipsis{max-width:370px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pill{display:inline-block;border-radius:30px;padding:5px 9px;font-size:11px;font-weight:750;white-space:nowrap;background:#e9edf3;color:#52647b}
+.pill.potwierdzone{background:#dcf6e7;color:#14683b}.pill.niepełne{background:#fff0cf;color:#795000}.pill.odrzucone{background:#f4e4e4;color:#983033}.pill.ręcznej{background:#fbe2da;color:#92400e}.pill.oczekujące{background:#e7edff;color:#304ea4}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}.field label{font-size:12px;font-weight:700;color:#52637c}.field input,.field select{width:100%}
+check{display:block}.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 18px;padding:10px;border:1px solid #e3e9f2;border-radius:9px}.checks label{display:flex;align-items:center;gap:8px;font-size:13px}
+.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.right{margin-left:auto}.note{font-size:12px;color:#7a8799;line-height:1.6}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;word-break:break-all}
+hr{border:0;border-top:1px solid #e5eaf0;margin:16px 0}.empty{text-align:center;padding:35px;color:#718094;font-size:14px}
+.cardlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.item{border:1px solid #dfe7f0;padding:12px;border-radius:10px}.item h3{font-size:14px;margin:0 0 7px}.item p{margin:0 0 8px;line-height:1.4;font-size:12px;color:#5f7187}
+.log{font-size:12px;border-left:3px solid #c9d9f0;padding:8px 12px;margin:8px 0;background:#f7f9fd;border-radius:0 9px 9px 0}
+footer{color:#708098;text-align:center;font-size:12px;margin-top:20px}#toast{position:fixed;bottom:16px;right:16px;max-width:450px;padding:12px 16px;background:#112a48;color:white;border-radius:10px;z-index:20;display:none;box-shadow:0 9px 25px #23354f55}
+@media(max-width:930px){.stats{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr}}
+@media(max-width:610px){.top{align-items:start;flex-direction:column}.brand h1{font-size:17px}.app{padding:13px 10px 26px}.stats{grid-template-columns:repeat(2,1fr);gap:8px}.stat{padding:12px}.stat .n{font-size:24px}.panel{padding:12px}.cardlist{grid-template-columns:1fr}.checks{grid-template-columns:1fr}input[type=file]{width:100%}}
+</style>
+</head><body>
+<header class="top"><div class="brand"><div class="crest">⚖</div><div><h1>Kontrola przyrostowa Asystenta Radnego</h1><p>Rada Miasta Malborka · IX kadencja · prywatny panel weryfikacyjny</p></div></div>
+<div class="toplinks"><a target="_blank" rel="noopener" href="https://bip.malbork.pl/m,648,ix-kadencja-2024-2029.html">Oficjalny BIP</a><a target="_blank" rel="noopener" href="https://jarekdymek.github.io/Asystent-Radnego-Malbork/">Publiczna PWA</a></div></header>
+<main class="app">
+<div class="banner"><b>Rozdział administracja / publikacja:</b> panel nie modyfikuje repozytorium GitHub, publicznej PWA, <span class="mono">sw.js</span> ani <span class="mono">version.json</span>. Dane robocze zapisywane są lokalnie w przeglądarce. Import BIP nie oznacza automatycznej weryfikacji. <span id="contextInfo"></span></div>
+<div class="stats">
+<div class="stat"><div class="n" id="statNew">0</div><small>Nowe źródła od punktu kontrolnego</small></div>
+<div class="stat"><div class="n" id="statBackfill">0</div><small>Otwarte zadania backfillu</small></div>
+<div class="stat"><div class="n" id="statGaps">0</div><small>Nierozstrzygnięte braki</small></div>
+<div class="stat"><div class="n" id="statDiff">0</div><small>Niezgodności i zmiany do kontroli</small></div>
+<div class="stat"><div class="n" id="statUpdates">—</div><small>Ostatnia aktualizacja lokalna</small></div>
+</div>
+<nav class="bar" aria-label="Sekcje">
+<button data-page="sources" class="active">Źródła</button><button data-page="import">Import BIP</button><button data-page="backfill">Backfill i braki</button><button data-page="compare">Porównanie wersji</button><button data-page="history">Historia partii</button><button data-page="publish">Paczka publikacyjna</button><button data-page="settings">Ustawienia</button>
+</nav>
+<section id="content"></section><footer>Panel kontrolny IX kadencji · bez automatycznej publikacji · zakres danych zależy od importu</footer>
+</main><div id="toast" role="status" aria-live="polite"></div><input id="fileInput" type="file" accept=".xlsx,.json,.csv,.tsv" hidden>
+<script>
+'use strict';
+const K='malbork_ix_incremental_v2';
+const STATUSES=['potwierdzone','niepełne','wymagające ręcznej kontroli','odrzucone','oczekujące na niezależne potwierdzenie'];
+const TYPES=['zawiadomienie komisji','interpelacja','odpowiedź','projekt uchwały','uchwała','protokół','głosowanie imienne','porządek obrad','obecność','inny dokument'];
+const PUBLIC={repo:'JarekDymek/Asystent-Radnego-Malbork',url:'https://jarekdymek.github.io/Asystent-Radnego-Malbork/',observedVersion:'1.61.0'};
+const BIP='https://bip.malbork.pl';
+const fresh=()=>({schema:2,masterVersion:'niezaimportowana',masterFile:'',sources:[],gaps:[],backfill:[],processed:[],batches:[],events:[],baseline:{},checkpoint:{},created:new Date().toISOString(),lastUpdated:null});
+let db;try{db=JSON.parse(localStorage.getItem(K)||'null')||fresh();if(db.schema!==2)throw Error('Nieobsługiwany zapis');}catch{db=fresh()}
+let page='sources', selected=null, search='', statusFilter='', sortMode='recent';
+const $=s=>document.querySelector(s);
+const enc=s=>String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#39;");
+const id=()=>crypto.randomUUID?crypto.randomUUID():String(Date.now())+'-'+Math.random().toString(16).slice(2);
+const now=()=>new Date().toISOString();
+const fmt=s=>s?new Date(s).toLocaleString('pl-PL',{dateStyle:'short',timeStyle:'short'}):'—';
+const fmtDay=s=>s?new Date(s).toLocaleDateString('pl-PL',{month:'short',day:'numeric'}):'—';
+function notify(t,error=false){let e=$('#toast');e.textContent=t;e.style.display='block';e.style.background=error?'#932c2c':'#112a48';clearTimeout(notify.t);notify.t=setTimeout(()=>e.style.display='none',4500)}
+function persist(){db.lastUpdated=now();try{localStorage.setItem(K,JSON.stringify(db));return true}catch(e){notify('Nie udało się zapisać! Wyeksportuj kopię i usuń część danych: '+e.message,true);return false}}
+function event(action,desc,batch=''){db.events.unshift({id:id(),time:now(),action,desc,batch});db.events.length=Math.min(db.events.length,750)}
+function changePage(v){page=v;selected=null;draw()}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>changePage(b.dataset.page)));
+function href(url){try{let u=new URL(url);return ['http:','https:'].includes(u.protocol)?u.href:''}catch{return''}}
+function canon(url){try{let u=new URL(url);u.hash='';u.hostname=u.hostname.toLowerCase().replace(/^www\./,'');u.pathname=u.pathname.replace(/\/+$/,'').replace(/%2c/ig,',');for(const k of [...u.searchParams.keys()])if(k.startsWith('utm_')||['fbclid','gclid'].includes(k))u.searchParams.delete(k);u.searchParams.sort();return u.toString()}catch{return String(url||'').trim().toLowerCase()}}
+function signature(s){return JSON.stringify([s.title?.trim(),s.type?.trim(),canon(s.url),s.session?.trim(),s.digest||''])}
+function domHash(s){let h=2166136261;for(let c of signature(s)){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return(h>>>0).toString(16).padStart(8,'0')}
+function statusClass(s){return s.includes('ręcznej')?'ręcznej':s.includes('oczekujące')?'oczekujące':s}
+function pill(s){return `<span class="pill ${enc(statusClass(s))}">${enc(s)}</span>`}
+function sourceType(t){const q=(t||'').toLowerCase();if(q.includes('komisj')&&(/zawiad|posiedzenie|termin/.test(q)))return TYPES[0];if(q.includes('interpel')||q.includes('zapytan'))return TYPES[1];if(q.includes('odpowied'))return TYPES[2];if(q.includes('projekt'))return TYPES[3];if(q.includes('uchwa'))return TYPES[4];if(q.includes('protok'))return TYPES[5];if(q.includes('głoso')||q.includes('gloso'))return TYPES[6];if(q.includes('porząd')||q.includes('porzad'))return TYPES[7];if(q.includes('obecno'))return TYPES[8];return TYPES[9]}
+function masterStatus(x){const s=(x||'').toLowerCase();if(/brak publikacji|brak dostępu|brak dostepu|niedostępn/.test(s))return 'wymagające ręcznej kontroli';if(/niepełn|niekomplet/.test(s))return 'niepełne';if(/odrzucon/.test(s))return 'odrzucone';return 'oczekujące na niezależne potwierdzenie'}
+function item(raw,src='ręczny'){return {id:raw.id||id(),externalId:raw.externalId||'',title:(raw.title||'Bez tytułu').trim(),type:sourceType(raw.type||''),session:raw.session||'',url:href(raw.url)||'',sourceState:raw.sourceState||'',priority:raw.priority||'P2',status:STATUSES.includes(raw.status)?raw.status:masterStatus(raw.status),foundAt:raw.foundAt||now(),updatedAt:now(),src:src,notes:raw.notes||'',digest:raw.digest||'',official:false,read:false,identity:false,independent:false,independentUrl:'',reviewer:'',verifiedAt:'',verified:false,lock:false,legacyProcessed:!!raw.legacyProcessed,includePublication:false,issue:raw.issue||'',lastError:'',revision:0,compareState:'nowe'}}
+function addRecords(records,origin='import',kind='źródła'){let created=0,changed=0,dup=0,bid='B-'+new Date().toISOString().replace(/[-:.TZ]/g,'').slice(0,14)+'-'+String(db.batches.length+1);
+ const seen=new Set();
+ for(const raw of records){if(!(raw.title||raw.url||raw.externalId))continue;
+ if(raw.digest&&db.processed.some(p=>p.key==='sha256:'+String(raw.digest).toLowerCase())){dup++;continue}
+ const key=canon(raw.url||'')||raw.externalId||raw.title.toLowerCase();
+ if(seen.has(key)){dup++;continue}seen.add(key);
+ let existing=db.sources.find(x=>(raw.externalId&&x.externalId===raw.externalId)||(raw.url&&canon(x.url)===canon(raw.url)));
+ if(existing){const probe={...existing,title:raw.title||existing.title,type:sourceType(raw.type||existing.type),url:href(raw.url)||existing.url,session:raw.session||existing.session,digest:raw.digest||existing.digest};
+ if(domHash(probe)===domHash(existing)){dup++;continue}
+ Object.assign(existing,{previous:{title:existing.title,url:existing.url,type:existing.type,session:existing.session,digest:existing.digest},title:probe.title,url:probe.url,type:probe.type,session:probe.session,digest:probe.digest,updatedAt:now(),compareState:'zmienione',verified:false,verifiedAt:'',lock:false,independent:false,includePublication:false,status:'wymagające ręcznej kontroli',issue:'Wykryto zmianę metadanych źródła; ponowna weryfikacja',revision:(existing.revision||0)+1});changed++;continue}
+ db.sources.push(item(raw,origin));created++;
+ }
+ db.batches.unshift({id:bid,time:now(),origin,kind,created,changed,duplicates:dup,total:records.length,masterVersion:db.masterVersion});event('import',`${origin}: nowych ${created}, zmienionych ${changed}, pominiętych ${dup}`,bid);persist();draw();notify(`Partia ${bid}: ${created} nowych, ${changed} zmienionych, ${dup} duplikatów`)}
+function locksFor(s){return db.processed.some(p=>p.key===canon(s.url||s.externalId)&&p.signature===domHash(s))}
+function snapshot(){return Object.fromEntries(db.sources.map(s=>[s.externalId||canon(s.url)||s.id,{sig:domHash(s),title:s.title,type:s.type,session:s.session,status:s.status}]))}
+function counters(){let news=db.sources.filter(s=>s.compareState==='nowe').length,backfill=db.backfill.filter(x=>!x.closed).length,gaps=db.gaps.filter(x=>!x.closed).length,mismatch=db.sources.filter(s=>s.compareState==='zmienione'||s.issue||s.lastError).length+db.gaps.filter(x=>x.mismatch&&!x.closed).length;return {news,backfill,gaps,mismatch}}
+function draw(){document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));const c=counters();
+ $('#statNew').textContent=c.news.toLocaleString('pl-PL');$('#statBackfill').textContent=c.backfill;$('#statGaps').textContent=c.gaps;$('#statDiff').textContent=c.mismatch;
+ $('#statUpdates').textContent=fmtDay(db.lastUpdated);$('#contextInfo').textContent=`Master: ${db.masterVersion}; publiczna PWA: ${PUBLIC.observedVersion} (według repozytorium, nie synchronizowano).`;
+ const views={sources:renderSources,import:renderImport,backfill:renderBackfill,compare:renderCompare,history:renderHistory,publish:renderPublish,settings:renderSettings};
+ $('#content').innerHTML=views[page]();bindView()}
+function renderSources(){const rows=db.sources.filter(s=>(!statusFilter||s.status===statusFilter)&&(!search||[s.title,s.externalId,s.session,s.type,s.url].join(' ').toLowerCase().includes(search.toLowerCase()))).sort((a,b)=>sortMode==='recent'?b.updatedAt.localeCompare(a.updatedAt):a.title.localeCompare(b.title,'pl'));
+return `<section class="panel"><div class="headline"><div><h2>Rejestr źródeł</h2><div class="muted">${rows.length} wyników · ${db.sources.length} pozycji w bazie roboczej</div></div><div class="row"><button class="primary" id="addBtn">+ Dodaj źródło</button><button id="importShortcut">Importuj</button></div></div>
+<div class="controls"><input type="search" id="search" value="${enc(search)}" placeholder="Szukaj po tytule, ID, sesji, URL"><select id="statusFilter"><option value="">Wszystkie statusy</option>${STATUSES.map(s=>`<option value="${enc(s)}" ${s===statusFilter?'selected':''}>${enc(s)}</option>`).join('')}</select><select id="sortMode"><option value="recent" ${sortMode==='recent'?'selected':''}>Ostatnio aktualizowane</option><option value="title" ${sortMode==='title'?'selected':''}>Według tytułu</option></select></div>
+${rows.length?`<div class="tablewrap"><table><thead><tr><th>Źródło / ID</th><th>Typ · sesja</th><th>Status</th><th>Zmiana</th><th>Akcja</th></tr></thead><tbody>${rows.slice(0,1000).map(s=>`<tr><td><b class="ellipsis" title="${enc(s.title)}">${enc(s.title)}</b><div class="note mono">${enc(s.externalId||s.id.slice(0,8))}</div></td><td>${enc(s.type)}<div class="muted">${enc(s.session||'—')}</div></td><td>${pill(s.status)} ${s.verified?'✓':''}<div class="note">${s.lock||locksFor(s)?'🔒 blokada ponownego przetworzenia':''}</div></td><td>${enc(s.compareState||'—')}</td><td><button class="tiny outline" data-edit="${enc(s.id)}">Sprawdź</button></td></tr>`).join('')}</tbody></table></div>`:`<div class="empty">Brak rekordów. Zaimportuj master XLSX, JSON/CSV albo dodaj nowe źródło.</div>`}</section>${selected?renderEditor():''}`}
+function renderEditor(){const s=db.sources.find(x=>x.id===selected);if(!s)return'';return `<section class="panel" id="editor"><div class="headline"><h2>Weryfikacja: ${enc(s.externalId||s.id.slice(0,8))}</h2><button id="closeEditor">Zamknij</button></div>
+<div class="grid"><div><div class="field"><label>Tytuł</label><input id="editTitle" value="${enc(s.title)}"></div><div class="field"><label>Adres URL oficjalnego dokumentu</label><input id="editUrl" value="${enc(s.url)}"></div><div class="row" style="margin-bottom:10px">${s.url?`<a href="${enc(s.url)}" target="_blank" rel="noopener">Otwórz źródło ↗</a>`:''}<button class="tiny" id="checkUrl">Sprawdź dostępność (o ile CORS pozwala)</button></div>
+<div class="grid"><div class="field"><label>Rodzaj</label><select id="editType">${TYPES.map(v=>`<option ${s.type===v?'selected':''}>${enc(v)}</option>`).join('')}</select></div><div class="field"><label>Sesja / okres</label><input id="editSession" value="${enc(s.session)}"></div></div>
+<div class="field"><label>Opis / uwagi do audytu</label><textarea id="editNotes">${enc(s.notes)}</textarea></div></div>
+<div><div class="field"><label>Status</label><select id="editStatus">${STATUSES.map(v=>`<option ${s.status===v?'selected':''}>${enc(v)}</option>`).join('')}</select></div>
+<div class="field"><label>Weryfikujący</label><input id="editReviewer" value="${enc(s.reviewer)}" placeholder="Imię, inicjały lub identyfikator"></div><div class="field"><label>Drugie niezależne potwierdzenie — URL</label><input id="editEvidence" value="${enc(s.independentUrl)}" placeholder="Inny niezależny dokument / rejestr"></div>
+<div class="checks"><label><input id="editOfficial" type="checkbox" ${s.official?'checked':''}> Oficjalne źródło potwierdzone</label><label><input id="editRead" type="checkbox" ${s.read?'checked':''}> Treść dokumentu odczytana</label><label><input id="editIdentity" type="checkbox" ${s.identity?'checked':''}> ID / daty / relacje zgodne</label><label><input id="editIndependent" type="checkbox" ${s.independent?'checked':''}> Drugie źródło sprawdzone</label><label><input id="editInclude" type="checkbox" ${s.includePublication?'checked':''}> Uwzględnij w paczce</label></div>
+<div class="field" style="margin-top:10px"><label>Problem / niezgodność (puste = brak)</label><input id="editIssue" value="${enc(s.issue)}" placeholder="Np. niezgodna data w BIP"></div><div class="note">${s.lastError?enc(s.lastError):'Ocena HTTP jest pomocnicza; błędy CORS i timeout nie dowodzą braku publikacji.'}</div></div></div>
+${s.previous?`<div class="alert">Poprzednia wersja: ${enc(s.previous.title)} · ${enc(s.previous.url)}. Sprawdź, czy zmiana jest uzasadniona.</div>`:''}
+<div class="row"><button id="saveEdit">Zapisz ustalenia</button><button class="primary" id="verifyBtn" ${s.lock&&s.verified?'disabled':''}>Oznacz jako zweryfikowane</button><button id="rejectBtn" class="danger">Odrzuć</button><span class="muted">${s.verified?'Zweryfikowano: '+fmt(s.verifiedAt):s.legacyProcessed?'Istnieje w masterze; nowe zatwierdzenie nie zostało potwierdzone':'Niezweryfikowane'}</span></div></section>`}
+function renderImport(){return `<section class="panel"><div class="headline"><h2>Import materiałów i źródeł</h2><span class="muted">Pojedyncze przetwarzanie partii; duplikaty są pomijane</span></div>
+<div class="grid"><div><h3>Import master XLSX lub danych JSON/CSV</h3><p class="muted">Obsługiwane arkusze master: <span class="mono">Zrodla, Braki, Kolejka_Backfill_przekazanie, Rejestr_Odczytu, START</span>. Plik pozostaje na urządzeniu.</p><input type="file" id="importFile" accept=".xlsx,.json,.csv,.tsv"><p class="note">Przetworzone pozycje historyczne są oznaczane jako istniejące, lecz nie otrzymują nowego zatwierdzenia automatycznie.</p></div>
+<div><h3>Import listy adresów BIP</h3><p class="muted">Każda linia: URL | tytuł | rodzaj | sesja. Możesz wkleić również sam URL. Dopuszczalne tylko domeny urzędowe; inne adresy będą wymagały kontroli.</p>
+<textarea id="batchUrls" placeholder="https://bip.malbork.pl/... | Zawiadomienie komisji | zawiadomienie komisji | XXXVI"></textarea><div class="row"><button class="primary" id="importUrls">Dodaj adresy</button></div></div></div><hr>
+<h3>Odczyt indeksu BIP (jeśli serwer pozwala)</h3><div class="controls"><input type="url" id="scanUrl" style="flex:1" value="https://bip.malbork.pl/m,648,ix-kadencja-2024-2029.html"><button id="scanBtn">Skanuj linki</button></div><div id="scanResult" class="note">Jeśli BIP blokuje dostęp CORS z przeglądarki, wynik będzie „nie można zweryfikować” — nie „strona nie istnieje”. Można wtedy wkleić linki ręcznie.</div>
+<div class="cardlist">${[['IX kadencja', 'https://bip.malbork.pl/m,648,ix-kadencja-2024-2029.html'],['Uchwały', 'https://bip.malbork.pl/m,654,ix-rm-uchwaly-rady.html'],['Interpelacje', 'https://bip.malbork.pl/m,655,ix-rm-interpelacje-i-zapytania-radnych.html'],['Międzysesyjne', 'https://bip.malbork.pl/m,656,ix-rm-miedzysesyjne-interpelacje-i-zapytania-radnych.html'],['Protokoły','https://bip.malbork.pl/m,652,protokoly.html']].map(([t,u])=>`<div class="item"><b>${t}</b><div><a target="_blank" rel="noopener" href="${u}">${enc(u)}</a></div></div>`).join('')}</div>
+</section>`}
+function renderBackfill(){return `<section class="panel"><div class="headline"><h2>Kolejka backfillu</h2><button id="addBackfill" class="primary">+ Zadanie</button></div><div class="cardlist">${db.backfill.length?db.backfill.map(b=>`<div class="item"><div class="row">${pill(b.closed?'potwierdzone':'niepełne')} <b>${enc(b.priority||'P2')}</b></div><h3>${enc(b.scope)}</h3><p>${enc(b.diagnosis||'')}</p><p>${enc(b.action||'')}</p><div class="note">Stan z master: ${enc(b.originalStatus||'—')}</div><div class="row"><button class="tiny" data-backfill="${enc(b.id)}">${b.closed?'Otwórz ponownie':'Zamknij po kontroli'}</button></div></div>`).join(''):`<div class="empty">Nie zaimportowano kolejki.</div>`}</div></section>
+<section class="panel"><div class="headline"><h2>Braki i niezgodności</h2><button class="primary" id="addGap">+ Dodaj brak</button></div><div class="tablewrap"><table><thead><tr><th>ID i zakres</th><th>Opis / oczekiwane źródło</th><th>Status źródłowy</th><th>Rozstrzygnięcie</th></tr></thead><tbody>${db.gaps.slice(0,800).map(g=>`<tr><td><b>${enc(g.externalId||g.id.slice(0,8))}</b><div>${enc(g.scope)}</div></td><td>${enc(g.desc)}<div class="note">${enc(g.expected)}</div></td><td>${enc(g.originalStatus)}</td><td><button class="tiny ${g.closed?'ok':'outline'}" data-gap="${enc(g.id)}">${g.closed?'Zamknięty — otwórz':'Sprawdź / zamknij'}</button></td></tr>`).join('')}</tbody></table></div></section>`}
+function compareList(){const ref=db.checkpoint||{};const cur=snapshot(),added=[],changed=[],removed=[],same=[];for(const [k,v] of Object.entries(cur)){if(!ref[k])added.push([k,v]);else if(v.sig!==ref[k].sig)changed.push([k,v]);else same.push([k,v])}for(const [k,v] of Object.entries(ref)){if(!cur[k])removed.push([k,v])}return{added,changed,removed,same}}
+function renderCompare(){let c=compareList();return `<section class="panel"><div class="headline"><div><h2>Porównanie z poprzednią wersją</h2><div class="muted">Punkt odniesienia: ${db.checkpointAt?fmt(db.checkpointAt):'jeszcze nie zapisano'}</div></div><button id="createCheckpoint" class="primary">Zapisz punkt kontrolny</button></div><div class="stats" style="grid-template-columns:repeat(4,1fr)"><div class="stat"><div class="n">${c.added.length}</div><small>Dodane</small></div><div class="stat"><div class="n">${c.changed.length}</div><small>Zmienione</small></div><div class="stat"><div class="n">${c.removed.length}</div><small>Usunięte z bieżącego zestawu</small></div><div class="stat"><div class="n">${c.same.length}</div><small>Bez zmian</small></div></div>
+<div class="note">Porównanie dotyczy pól identyfikujących rekordy, adresów i sum SHA, jeśli dostarczono. Nie potwierdza zgodności treści PDF bez odczytu źródła. Zapis punktu kontrolnego nie publikuje zmian.</div>
+<div class="tablewrap" style="margin-top:14px"><table><thead><tr><th>Rodzaj</th><th>Klucz</th><th>Rekord</th></tr></thead><tbody>${[...c.added.map(x=>['NOWE',...x]),...c.changed.map(x=>['ZMIANA',...x]),...c.removed.map(x=>['USUNIĘTE',...x])].slice(0,300).map(([kind,k,v])=>`<tr><td>${enc(kind)}</td><td class="mono">${enc(k)}</td><td>${enc(v.title||'')}</td></tr>`).join('')}</tbody></table></div></section>`}
+function renderHistory(){return `<section class="panel"><div class="headline"><h2>Historia przetwarzania partiami</h2><span class="muted">Zachowywana lokalnie</span></div><div class="tablewrap"><table><thead><tr><th>Data</th><th>Partia</th><th>Źródło</th><th>Nowe</th><th>Zmodyfikowane</th><th>Pominięte (duplikaty)</th></tr></thead><tbody>${db.batches.map(b=>`<tr><td>${fmt(b.time)}</td><td class="mono">${enc(b.id)}</td><td>${enc(b.origin)}</td><td>${b.created}</td><td>${b.changed}</td><td>${b.duplicates}</td></tr>`).join('')}</tbody></table></div><h3>Rejestr ostatnich zmian</h3>${db.events.slice(0,150).map(e=>`<div class="log"><strong>${enc(e.action)}</strong> · ${fmt(e.time)} · ${enc(e.desc)}</div>`).join('')||'<div class="empty">Brak operacji</div>'}</section>`}
+function publishing(){const chosen=db.sources.filter(s=>s.includePublication),faults=[];
+if(!chosen.length)faults.push('Nie wybrano żadnych źródeł do publikacji.');
+const incoming=db.sources.filter(s=>s.compareState==='nowe'||s.compareState==='zmienione');
+const unresolved=incoming.filter(s=>!s.verified&&s.status!=='odrzucone');
+if(unresolved.length)faults.push(`Nierozstrzygnięte nowe lub zmienione źródła: ${unresolved.length}.`);
+for(const s of chosen){if(s.status!=='potwierdzone'||!s.verified||!s.lock)faults.push(`${s.externalId||s.title}: nieukończona weryfikacja.`);
+if(s.issue||s.lastError)faults.push(`${s.externalId||s.title}: otwarte problemy.`);
+if(!s.official||!s.read||!s.identity||!s.independent||!s.independentUrl||!s.reviewer)faults.push(`${s.externalId||s.title}: brak kompletu dowodów.`)}
+const linked=new Set(chosen.map(s=>s.session).filter(Boolean));
+const bg=db.gaps.filter(g=>!g.closed && [...linked].some(t=>g.scope?.includes(t)));
+if(bg.length)faults.push(`Niezamknięte braki w objętych paczką sesjach: ${bg.length}.`);
+return{chosen,faults}}
+function renderPublish(){let p=publishing();return `<section class="panel"><div class="headline"><h2>Przygotowanie paczki do publikacji</h2>${p.faults.length?pill('niepełne'):pill('potwierdzone')}</div>
+<p class="muted">Eksportuje manifest JSON tylko po przejściu bramek jakości. Nie dokonuje commitu, aktualizacji aplikacji ani wysłania danych do serwera.</p>
+<div class="grid"><div class="item"><h3>Wybrane rekordy (${p.chosen.length})</h3>${p.chosen.map(s=>`<p>✓ ${enc(s.title)} — ${pill(s.status)}</p>`).join('')||'<p>W sekcji Źródła zaznacz rekordy do publikacji.</p>'}</div><div class="item"><h3>Blokady (${p.faults.length})</h3>${p.faults.length?p.faults.slice(0,50).map(f=>`<p>⛔ ${enc(f)}</p>`).join(''):'<p>Nie wykryto blokad dla wskazanego zakresu.</p>'}</div></div>
+<div class="row" style="margin-top:15px"><button class="primary" id="createPackage" ${p.faults.length?'disabled':''}>Wygeneruj zweryfikowany manifest JSON</button><button id="exportBackup">Eksportuj pełną kopię roboczą</button></div><p class="note">Manifest jest kandydatem do osobnej, ręcznie zatwierdzanej publikacji. Nie zawiera skanów ani danych prywatnych. Przygotowanie paczki nie zastępuje procesów kompilacji i SHA-256 publicznego repozytorium.</p></section>`}
+function renderSettings(){return `<section class="panel"><h2>Ustawienia i bezpieczeństwo</h2><div class="grid">
+<div><div class="field"><label>Powiązany projekt</label><input readonly value="${enc(PUBLIC.repo)}"></div><div class="field"><label>Zaimportowany master</label><input readonly value="${enc(db.masterFile||'—')}"></div><div class="field"><label>Wersja master</label><input readonly value="${enc(db.masterVersion)}"></div></div>
+<div><h3>Eksport / odtworzenie</h3><p class="muted">Kopia JSON odtwarza całą historię i oznaczenia. Ze względu na izolację przeglądarek i osadzeń Sites wykonuj regularny eksport kopii.</p><div class="row"><button id="backup" class="primary">Pobierz kopię danych</button><button id="restore">Wczytaj kopię</button></div></div></div>
+<hr><h3>Ograniczenia kontroli BIP</h3><p class="muted">Przeglądarka może nie mieć uprawnienia CORS do sprawdzania zewnętrznych adresów. Takiej sytuacji nie wolno oznaczać jako HTTP 404. Przeniesione, brakujące lub błędne strony należy zweryfikować ręcznie w oficjalnym BIP, zachowując URL, datę i dowód. Podobieństwo tytułów nie stanowi pewnego dowodu duplikatu; identyfikatory i SHA-256 mają pierwszeństwo.</p>
+<div class="row"><button class="danger" id="clearAll">Usuń wyłącznie lokalne dane tego panelu</button></div></section>`}
+function saveEditor(verify=false,reject=false){const s=db.sources.find(x=>x.id===selected);if(!s)return;const updated={title:$('#editTitle').value.trim(),url:href($('#editUrl').value),type:$('#editType').value,session:$('#editSession').value.trim()};
+if(!updated.title){notify('Podaj tytuł',true);return}
+const oldSig=domHash(s),oldFields={title:s.title,url:s.url,type:s.type,session:s.session,digest:s.digest};Object.assign(s,updated,{notes:$('#editNotes').value,status:$('#editStatus').value,reviewer:$('#editReviewer').value.trim(),independentUrl:href($('#editEvidence').value),official:$('#editOfficial').checked,read:$('#editRead').checked,identity:$('#editIdentity').checked,independent:$('#editIndependent').checked,issue:$('#editIssue').value.trim(),includePublication:$('#editInclude').checked,updatedAt:now()});
+if(oldSig!==domHash(s)){s.previous=oldFields;s.verified=false;s.verifiedAt='';s.lock=false;s.compareState='zmienione';s.issue=s.issue||'Zmieniono kluczowe pola — sprawdź dokument od nowa'}
+if(reject){s.status='odrzucone';s.verified=false;s.lock=true;s.includePublication=false;event('odrzucenie',s.title)}
+else if(verify){if(s.status!=='potwierdzone'){notify('Do weryfikacji ustaw status „potwierdzone”.',true);persist();draw();return}
+if(!s.official||!s.read||!s.identity||!s.independent||!s.independentUrl||!s.reviewer||s.issue||s.lastError||!s.url){notify('Nie spełniono bramek: źródło oficjalne, odczyt, ID, niezależny dowód z URL, weryfikujący oraz brak problemów.',true);persist();draw();return}
+if(canon(s.independentUrl)===canon(s.url)){notify('Drugie potwierdzenie musi prowadzić do innego dokumentu.',true);return}
+s.verified=true;s.lock=true;s.verifiedAt=now();s.compareState='sprawdzone';
+db.processed.push({key:canon(s.url||s.externalId),signature:domHash(s),time:now(),reviewer:s.reviewer});
+event('weryfikacja',s.title)}else{if(s.verified&&!s.read){s.verified=false;s.lock=false;s.verifiedAt=''}event('edycja',s.title)}
+persist();draw();if(!verify||s.verified)notify(verify?'Źródło zweryfikowano i zablokowano ponowne przetwarzanie':'Zapisano zmiany')}
+async function checkRemote(url,target){if(!url){notify('Brak prawidłowego adresu URL.',true);return}
+if(target)target.textContent='Sprawdzanie...';
+let msg;try{let controller=new AbortController();let timeout=setTimeout(()=>controller.abort(),8500);
+let r=await fetch(url,{mode:'cors',cache:'no-store',signal:controller.signal,redirect:'follow'});clearTimeout(timeout);
+msg=`HTTP ${r.status}: ${r.ok?'zasób odpowiedział':'serwer zgłosił błąd'}. Odczyt pomocniczy; status wymaga interpretacji.`;if(!r.ok){const s=db.sources.find(x=>x.id===selected);if(s){s.lastError=`HTTP ${r.status}, ${fmt(now())}`;s.issue=s.issue||'Niedostępna / błędna strona BIP';s.status='wymagające ręcznej kontroli';s.verified=false;s.lock=false;persist()}}else{const s=db.sources.find(x=>x.id===selected);if(s){s.lastError='';persist()}}}
+catch(e){msg=`Nie można zweryfikować odpowiedzi (CORS, sieć lub timeout). To NIE jest dowód niedostępności strony: ${e.name||'błąd'}.`;}
+if(target)target.textContent=msg;notify(msg,!msg.includes('HTTP 200'))}
+function downloadJSON(obj,name){const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'});const u=URL.createObjectURL(blob);let a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1200)}
+function fileImport(){const f=$('#fileInput');f.value='';f.click()}
+function bindView(){
+if(page==='sources'){
+ $('#search').oninput=e=>{search=e.target.value;let i=e.target.selectionStart;draw();let f=$('#search');f.focus();f.setSelectionRange(i,i)};$('#statusFilter').onchange=e=>{statusFilter=e.target.value;draw()};$('#sortMode').onchange=e=>{sortMode=e.target.value;draw()};
+ $('#addBtn').onclick=()=>{let s=item({title:'Nowy dokument',type:'inny dokument'},'ręczne dodanie');db.sources.unshift(s);selected=s.id;event('dodanie',s.title);persist();draw();$('#editor')?.scrollIntoView({behavior:'smooth'})};
+ $('#importShortcut').onclick=()=>changePage('import');document.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{selected=b.dataset.edit;draw();$('#editor')?.scrollIntoView({behavior:'smooth'})});
+ if(selected&&$('#editor')){$('#closeEditor').onclick=()=>{selected=null;draw()};$('#saveEdit').onclick=()=>saveEditor(false);$('#verifyBtn').onclick=()=>saveEditor(true);$('#rejectBtn').onclick=()=>{if(confirm('Odrzucić źródło?'))saveEditor(false,true)};
+ $('#checkUrl').onclick=()=>{let url=href($('#editUrl').value);checkRemote(url,$('#checkUrl'))};}
+}
+if(page==='import'){
+ $('#importFile').onchange=e=>{const f=e.target.files[0];if(f)importFile(f)};
+ $('#importUrls').onclick=()=>{let rec=$('#batchUrls').value.trim().split(/\r?\n/).map(l=>l.split('|').map(v=>v.trim())).filter(x=>x[0]&&href(x[0])).map(([url,title,type,session])=>({url,title:title||url,type:type||'',session:session||''}));if(!rec.length){notify('Nie znaleziono prawidłowych adresów URL.',true);return}addRecords(rec,'lista URL')};
+ $('#scanBtn').onclick=async()=>{let u=href($('#scanUrl').value);if(!u||!u.startsWith(BIP)){notify('Skan dozwolony tylko z oficjalnego BIP Malborka.',true);return}
+ let target=$('#scanResult');target.textContent='Pobieranie...';
+ try{const controller=new AbortController();const t=setTimeout(()=>controller.abort(),11000);let r=await fetch(u,{mode:'cors',signal:controller.signal});clearTimeout(t);if(!r.ok)throw Error('HTTP '+r.status);
+ let doc=new DOMParser().parseFromString(await r.text(),'text/html');let urls=[...doc.querySelectorAll('a[href]')].map(a=>({url:href(new URL(a.getAttribute('href'),u).href),title:a.textContent.trim()})).filter(x=>x.url&&x.url.startsWith(BIP)&&x.title.length>8);
+ urls=[...new Map(urls.map(x=>[canon(x.url),x])).values()];target.textContent=`Wykryto ${urls.length} unikatowych linków BIP. Import oznaczy je jako oczekujące — nigdy jako potwierdzone.`;if(urls.length&&confirm(`Dodać ${urls.length} linków do kolejki?`))addRecords(urls,'skan BIP')}
+ catch(e){target.textContent='Nie można wykonać odczytu indeksu BIP w tej przeglądarce ('+e.message+'). Powodem może być CORS; to nie oznacza, że strona nie istnieje. Otwórz stronę i dodaj linki ręcznie.'}};
+}
+if(page==='backfill'){
+ $('#addBackfill').onclick=()=>{const scope=prompt('Zakres zadania backfillu:');if(!scope)return;db.backfill.push({id:id(),scope,priority:'P2',diagnosis:'Dodano ręcznie',action:'Zweryfikować źródła',originalStatus:'nowy',closed:false});event('backfill',scope);persist();draw()};
+ $('#addGap').onclick=()=>{const desc=prompt('Opis braku lub niezgodności:');if(!desc)return;db.gaps.push({id:id(),externalId:'',scope:'bieżący',desc,expected:'BIP',originalStatus:'nowy',closed:false,mismatch:true});event('brak',desc);persist();draw()};
+ document.querySelectorAll('[data-backfill]').forEach(b=>b.onclick=()=>{let x=db.backfill.find(z=>z.id===b.dataset.backfill);if(!x.closed&&!confirm('Potwierdzasz zamknięcie po ręcznej weryfikacji?'))return;x.closed=!x.closed;event('backfill',x.scope+': '+(x.closed?'zamknięte':'ponownie otwarte'));persist();draw()});
+ document.querySelectorAll('[data-gap]').forEach(b=>b.onclick=()=>{let x=db.gaps.find(z=>z.id===b.dataset.gap);if(!x.closed&&!confirm('Czy potwierdzono rozwiązanie braku w oficjalnym źródle?'))return;x.closed=!x.closed;event('brak',x.externalId+': '+(x.closed?'zamknięty':'otwarty'));persist();draw()});
+}
+if(page==='compare')$('#createCheckpoint').onclick=()=>{if(!confirm('Zapisać aktualny stan jako nowy punkt odniesienia?'))return;db.checkpoint=snapshot();db.checkpointAt=now();db.sources.forEach(s=>{if(s.compareState==='nowe'&&s.verified)s.compareState='sprawdzone'});event('punkt kontrolny','Zapisano '+db.sources.length+' źródeł');persist();draw()};
+if(page==='publish'){$('#exportBackup').onclick=backup;$('#createPackage').onclick=()=>{let p=publishing();if(p.faults.length){notify('Paczka zablokowana.',true);return}let manifest={kind:'Asystent Radnego IX audit publication candidate',schema:1,generatedAt:now(),masterVersion:db.masterVersion,publicTarget:PUBLIC.repo,mode:'manual-review-only',sources:p.chosen.map(s=>({id:s.externalId||s.id,type:s.type,title:s.title,session:s.session,sourceUrl:s.url,independentUrl:s.independentUrl,reviewedBy:s.reviewer,verifiedAt:s.verifiedAt,signature:domHash(s),digest:s.digest||null})),checks:{allVerified:true,noBlockers:true},doesNotPublish:true};
+downloadJSON(manifest,'radny-IX-paczka-zweryfikowana-'+new Date().toISOString().slice(0,10)+'.json');db.batches.unshift({id:'PUB-'+Date.now(),time:now(),origin:'eksport',kind:'paczka do zatwierdzenia',created:0,changed:0,duplicates:0,total:manifest.sources.length});event('paczka','Manifest '+manifest.sources.length+' źródeł (bez publikacji)');persist();notify('Manifest wygenerowany. PWA pozostaje bez zmian.')}};
+if(page==='settings'){$('#backup').onclick=backup;$('#restore').onclick=fileImport;$('#clearAll').onclick=()=>{if(prompt('Wpisz USUŃ, aby wyczyścić tylko ten panel:')!=='USUŃ')return;localStorage.removeItem(K);db=fresh();changePage('sources');notify('Usunięto lokalną kopię danych panelu')}};
+}
+function backup(){downloadJSON({backupType:'malbork-ix-control',exportedAt:now(),data:db},'kontrola-radnego-IX-kopia-'+new Date().toISOString().slice(0,10)+'.json')}
+async function importFile(file){try{const lower=file.name.toLowerCase();if(lower.endsWith('.xlsx')){let sheets=await xlsxToSheets(await file.arrayBuffer(),['Zrodla','Braki','Kolejka_Backfill_przekazanie','Rejestr_Odczytu','START']);
+if(!sheets.Zrodla)throw Error('Nie znaleziono arkusza Zrodla');
+const firstMaster=!db.masterFile;let v=(sheets.START||[]).find(x=>Object.values(x).includes('Wersja bazy'));db.masterVersion=v?.Wartość||v?.B||'wersja nieustalona';db.masterFile=file.name;
+const readMap=new Map((sheets.Rejestr_Odczytu||[]).map(x=>[x.Dokument_ID,x]));
+let records=sheets.Zrodla.map(r=>({externalId:r.Źródło_ID||r.Zrodlo_ID,title:r.Tytuł_lub_lokalizator,type:r.Typ,session:r.Sesja_ID,url:r.URL_lub_file_id,priority:r.Priorytet,status:r.Status,notes:r.Uwagi,legacyProcessed:!!r.Status?.toLowerCase().includes('przetworzony')||!!readMap.has(r.Źródło_ID)}));
+if(!db.checkpointAt){db.checkpoint={};db.checkpointAt=now()}
+const gapIndex=new Set(db.gaps.map(g=>g.externalId));for(let r of(sheets.Braki||[])){if(!r.Brak_ID||gapIndex.has(r.Brak_ID))continue;db.gaps.push({id:id(),externalId:r.Brak_ID,scope:r.Zakres||'',desc:r.Opis||'',expected:r.Oczekiwane_źródło||'',originalStatus:r.Status||'',mismatch:/niespójn|rozbieżn|niezgodno/.test((r.Status||'').toLowerCase()),closed:/zamknięt|przetworzony(?! z brakami)/.test((r.Status||'').toLowerCase())})}
+const bfIndex=new Set(db.backfill.map(g=>g.scope));for(let r of(sheets.Kolejka_Backfill_przekazanie||[])){if(!r.Zakres||bfIndex.has(r.Zakres))continue;db.backfill.push({id:id(),scope:r.Zakres,priority:r.Priorytet||'P2',diagnosis:r['Diagnoza ze źródeł']||'',action:r['Działanie w wątku Backfill IX']||'',originalStatus:r.Status||'',closed:/potwierdzone|ukończon|zamknięt/.test((r.Status||'').toLowerCase())})}
+const processed=new Set(db.processed.map(x=>x.key+'|'+x.signature));for(let r of(sheets.Rejestr_Odczytu||[])){if(!r.Dokument_ID||!r.SHA256||!r.Pełny_odczyt?.toLowerCase().includes('tak'))continue;let key='sha256:'+r.SHA256.toLowerCase();if(processed.has(key+'|'+r.SHA256))continue;db.processed.push({key,signature:r.SHA256,time:now(),reviewer:'master ('+db.masterVersion+')',externalId:r.Dokument_ID,legacy:true});processed.add(key+'|'+r.SHA256)}
+addRecords(records,'master '+db.masterVersion,'master XLSX');if(firstMaster){db.sources.filter(s=>s.src==='master '+db.masterVersion).forEach(s=>s.compareState='bazowe');db.checkpoint=snapshot();db.checkpointAt=now()}event('master','Zaimportowano rejestry Braki / Backfill / Rejestr_Odczytu');persist();draw();
+}else if(lower.endsWith('.json')){let data=JSON.parse(await file.text());if(data.backupType==='malbork-ix-control'&&data.data?.schema===2){if(!confirm('Odtworzyć kopię? Zastąpi bieżące lokalne dane panelu.'))return;db=data.data;persist();draw();notify('Przywrócono kopię danych')}else if(Array.isArray(data))addRecords(data,'JSON');else if(Array.isArray(data.sources))addRecords(data.sources,'JSON');else throw Error('Nieznana struktura JSON');
+}else if(lower.endsWith('.csv')||lower.endsWith('.tsv')){let t=await file.text();let delimiter=lower.endsWith('.tsv')?'\t':(t.split('\n')[0].includes(';')?';':',');let records=csvObjects(t,delimiter);addRecords(records.map(r=>({title:r.title||r.Tytuł||r.Tytuł_lub_lokalizator,url:r.url||r.URL_lub_file_id,type:r.type||r.Typ,session:r.session||r.Sesja_ID,externalId:r.id||r.Źródło_ID||''})),file.name)}
+else throw Error('Obsługiwane są XLSX/JSON/CSV/TSV')}catch(e){notify('Import nieudany: '+e.message,true);console.error(e)}}
+function csvObjects(text,sep){let rows=[],cur=[],v='',q=false;for(let i=0;i<text.length;i++){let c=text[i];if(c==='"'){if(q&&text[i+1]==='"'){v+='"';i++}else q=!q}else if(c===sep&&!q){cur.push(v);v=''}else if((c==='\n'||c==='\r')&&!q){if(c==='\r'&&text[i+1]==='\n')i++;cur.push(v);rows.push(cur);cur=[];v=''}else v+=c}cur.push(v);if(cur.some(x=>x))rows.push(cur);let heads=rows.shift()||[];return rows.map(a=>Object.fromEntries(heads.map((h,j)=>[h.trim(),a[j]||''])))}
+async function xlsxToSheets(buffer,wanted){const dv=new DataView(buffer),u8=new Uint8Array(buffer);let idx=u8.length-22;for(;idx>=Math.max(0,u8.length-65557);idx--)if(dv.getUint32(idx,true)===0x06054b50)break;if(idx<0)throw Error('Nieprawidłowy plik ZIP/XLSX');
+const n=dv.getUint16(idx+10,true),offset=dv.getUint32(idx+16,true),index={};let pos=offset;
+for(let i=0;i<n;i++){if(dv.getUint32(pos,true)!==0x02014b50)throw Error('Uszkodzony indeks ZIP');let method=dv.getUint16(pos+10,true),size=dv.getUint32(pos+20,true),fnameLen=dv.getUint16(pos+28,true),extra=dv.getUint16(pos+30,true),comment=dv.getUint16(pos+32,true),local=dv.getUint32(pos+42,true),name=new TextDecoder().decode(u8.slice(pos+46,pos+46+fnameLen));index[name.replace(/^\/+/,'')]={method,size,local};pos+=46+fnameLen+extra+comment}
+async function read(name){const e=index[name];if(!e)throw Error('Brak wpisu '+name);let st=e.local;if(dv.getUint32(st,true)!==0x04034b50)throw Error('Błędny wpis ZIP');const dataStart=st+30+dv.getUint16(st+26,true)+dv.getUint16(st+28,true);let bytes=u8.slice(dataStart,dataStart+e.size);if(e.method===8){if(!('DecompressionStream' in window))throw Error('Przeglądarka nie obsługuje rozpakowania XLSX; zaimportuj JSON/CSV.');let ds;try{ds=new DecompressionStream('deflate-raw')}catch{throw Error('Przeglądarka nie obsługuje deflate-raw — użyj Chrome/Edge albo CSV')}bytes=new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(ds)).arrayBuffer())}else if(e.method!==0)throw Error('Nieobsługiwany algorytm ZIP: '+e.method);return new TextDecoder().decode(bytes)}
+const xml=t=>new DOMParser().parseFromString(t,'application/xml');let wb=xml(await read('xl/workbook.xml')),rels=xml(await read('xl/_rels/workbook.xml.rels'));let names={};for(const r of rels.getElementsByTagNameNS('*','Relationship'))names[r.getAttribute('Id')]=r.getAttribute('Target');
+let shared=[];if(index['xl/sharedStrings.xml']){let s=xml(await read('xl/sharedStrings.xml'));shared=[...s.getElementsByTagNameNS('*','si')].map(si=>[...si.getElementsByTagNameNS('*','t')].map(t=>t.textContent).join(''))}
+const results={};for(const sheet of wb.getElementsByTagNameNS('*','sheet')){let name=sheet.getAttribute('name');if(!wanted.includes(name))continue;let relId=sheet.getAttribute('r:id')||sheet.getAttributeNS('http://schemas.openxmlformats.org/officeDocument/2006/relationships','id');let path=(names[relId]||'').replace(/^\/+/,'');if(!path.startsWith('xl/'))path='xl/'+path;let doc=xml(await read(path));let rows=[...doc.getElementsByTagNameNS('*','sheetData')[0]?.getElementsByTagNameNS('*','row')||[]],output=[];
+for(const row of rows){let obj={};for(const c of row.getElementsByTagNameNS('*','c')){let ref=c.getAttribute('r')||'',col=ref.match(/^[A-Z]+/)?.[0];if(!col)continue;const typ=c.getAttribute('t');let v=c.getElementsByTagNameNS('*','v')[0]?.textContent||'';if(typ==='s')v=shared[Number(v)]??'';if(typ==='inlineStr')v=[...c.getElementsByTagNameNS('*','t')].map(t=>t.textContent).join('');obj[col]=v}
+if(Object.values(obj).some(v=>v!==''))output.push(obj)}
+const head=output.shift()||{};let colNames=Object.fromEntries(Object.entries(head).map(([k,v])=>[k,String(v).trim()]));results[name]=output.map(r=>Object.fromEntries(Object.entries(r).map(([c,v])=>[colNames[c]||c,v]))).filter(x=>Object.values(x).some(Boolean))}
+return results}
+$('#fileInput').addEventListener('change',e=>{const f=e.target.files[0];if(f)importFile(f)});
+draw();fetch('https://jarekdymek.github.io/Asystent-Radnego-Malbork/version.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(v=>{if(v?.version){PUBLIC.observedVersion=v.version;draw()}}).catch(()=>{});
+</script></body></html>
