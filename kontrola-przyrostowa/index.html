@@ -2,8 +2,8 @@
 <html lang="pl">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<title>Kontrola przyrostowa Asystenta Radnego · Malbork IX kadencja</title>
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<title>Kontrola przyrostowa | IX kadencja | Malbork</title>
 <style>
 :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:#152339;background:#f3f6fb;font-synthesis:none}
 *{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}a{color:#1354ab}
@@ -40,12 +40,15 @@ hr{border:0;border-top:1px solid #e5eaf0;margin:16px 0}.empty{text-align:center;
 footer{color:#708098;text-align:center;font-size:12px;margin-top:20px}#toast{position:fixed;bottom:16px;right:16px;max-width:450px;padding:12px 16px;background:#112a48;color:white;border-radius:10px;z-index:20;display:none;box-shadow:0 9px 25px #23354f55}
 @media(max-width:930px){.stats{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr}}
 @media(max-width:610px){.top{align-items:start;flex-direction:column}.brand h1{font-size:17px}.app{padding:13px 10px 26px}.stats{grid-template-columns:repeat(2,1fr);gap:8px}.stat{padding:12px}.stat .n{font-size:24px}.panel{padding:12px}.cardlist{grid-template-columns:1fr}.checks{grid-template-columns:1fr}input[type=file]{width:100%}}
+
+@media(max-width:780px){.bar{overflow-x:auto;flex-wrap:nowrap;padding:3px 0}.bar button{white-space:nowrap}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}} 
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head><body>
 <header class="top"><div class="brand"><div class="crest">⚖</div><div><h1>Kontrola przyrostowa Asystenta Radnego</h1><p>Rada Miasta Malborka · IX kadencja · prywatny panel weryfikacyjny</p></div></div>
 <div class="toplinks"><a target="_blank" rel="noopener" href="https://bip.malbork.pl/m,648,ix-kadencja-2024-2029.html">Oficjalny BIP</a><a target="_blank" rel="noopener" href="https://jarekdymek.github.io/Asystent-Radnego-Malbork/">Publiczna PWA</a></div></header>
 <main class="app">
-<div class="banner"><b>Rozdział administracja / publikacja:</b> panel nie modyfikuje repozytorium GitHub, publicznej PWA, <span class="mono">sw.js</span> ani <span class="mono">version.json</span>. Dane robocze zapisywane są lokalnie w przeglądarce. Import BIP nie oznacza automatycznej weryfikacji. <span id="contextInfo"></span></div>
+<div class="banner"><b>Rozdział administracja / publikacja:</b> panel nie modyfikuje repozytorium GitHub, publicznej PWA, <span class="mono">sw.js</span> ani <span class="mono">version.json</span>. Dane robocze zapisywane są wyłącznie lokalnie w przeglądarce; nie przesyłaj kopii z korespondencją na publiczny serwer. Import BIP nie oznacza automatycznej weryfikacji. <span id="contextInfo"></span></div>
 <div class="stats">
 <div class="stat"><div class="n" id="statNew">0</div><small>Nowe źródła od punktu kontrolnego</small></div>
 <div class="stat"><div class="n" id="statBackfill">0</div><small>Otwarte zadania backfillu</small></div>
@@ -54,7 +57,7 @@ footer{color:#708098;text-align:center;font-size:12px;margin-top:20px}#toast{pos
 <div class="stat"><div class="n" id="statUpdates">—</div><small>Ostatnia aktualizacja lokalna</small></div>
 </div>
 <nav class="bar" aria-label="Sekcje">
-<button data-page="sources" class="active">Źródła</button><button data-page="import">Import BIP</button><button data-page="backfill">Backfill i braki</button><button data-page="compare">Porównanie wersji</button><button data-page="history">Historia partii</button><button data-page="publish">Paczka publikacyjna</button><button data-page="settings">Ustawienia</button>
+<button data-page="integration">Integracja PWA</button><button data-page="mail">Korespondencja</button><button data-page="sources" class="active">Źródła</button><button data-page="import">Import BIP</button><button data-page="backfill">Backfill i braki</button><button data-page="compare">Porównanie wersji</button><button data-page="history">Historia partii</button><button data-page="publish">Paczka publikacyjna</button><button data-page="guide">Instrukcja / prezentacja</button><button data-page="settings">Ustawienia</button>
 </nav>
 <section id="content"></section><footer>Panel kontrolny IX kadencji · bez automatycznej publikacji · zakres danych zależy od importu</footer>
 </main><div id="toast" role="status" aria-live="polite"></div><input id="fileInput" type="file" accept=".xlsx,.json,.csv,.tsv" hidden>
@@ -67,10 +70,10 @@ const PUBLIC={repo:'JarekDymek/Asystent-Radnego-Malbork',url:'https://jarekdymek
 const BIP='https://bip.malbork.pl';
 const fresh=()=>({schema:2,masterVersion:'niezaimportowana',masterFile:'',sources:[],gaps:[],backfill:[],processed:[],batches:[],events:[],baseline:{},checkpoint:{},created:new Date().toISOString(),lastUpdated:null});
 let db;try{db=JSON.parse(localStorage.getItem(K)||'null')||fresh();if(db.schema!==2)throw Error('Nieobsługiwany zapis');}catch{db=fresh()}
-let page='sources', selected=null, search='', statusFilter='', sortMode='recent';
+let page='integration', selected=null, search='', statusFilter='', sortMode='recent', mailSearch='', mailFilter='all', selectedMail=null, integrationSearch='';
 const $=s=>document.querySelector(s);
 const enc=s=>String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#39;");
-const id=()=>crypto.randomUUID?crypto.randomUUID():String(Date.now())+'-'+Math.random().toString(16).slice(2);
+const id=()=>((typeof crypto!=='undefined'&&crypto.randomUUID)?crypto.randomUUID():String(Date.now())+'-'+Math.random().toString(16).slice(2));
 const now=()=>new Date().toISOString();
 const fmt=s=>s?new Date(s).toLocaleString('pl-PL',{dateStyle:'short',timeStyle:'short'}):'—';
 const fmtDay=s=>s?new Date(s).toLocaleDateString('pl-PL',{month:'short',day:'numeric'}):'—';
@@ -81,9 +84,9 @@ function changePage(v){page=v;selected=null;draw()}
 document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>changePage(b.dataset.page)));
 function href(url){try{let u=new URL(url);return ['http:','https:'].includes(u.protocol)?u.href:''}catch{return''}}
 function canon(url){try{let u=new URL(url);u.hash='';u.hostname=u.hostname.toLowerCase().replace(/^www\./,'');u.pathname=u.pathname.replace(/\/+$/,'').replace(/%2c/ig,',');for(const k of [...u.searchParams.keys()])if(k.startsWith('utm_')||['fbclid','gclid'].includes(k))u.searchParams.delete(k);u.searchParams.sort();return u.toString()}catch{return String(url||'').trim().toLowerCase()}}
-function signature(s){return JSON.stringify([s.title?.trim(),s.type?.trim(),canon(s.url),s.session?.trim(),s.digest||'',s.sourceState||''])}
+function signature(s){return JSON.stringify([s.title?.trim(),s.type?.trim(),canon(s.url),s.session?.trim(),s.digest||''])}
 function domHash(s){let h=2166136261;for(let c of signature(s)){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return(h>>>0).toString(16).padStart(8,'0')}
-function statusClass(s){return s.includes('ręcznej')?'ręcznej':s.includes('oczekujące')?'oczekujące':s}
+function statusClass(s){return String(s).includes('ręcznej')?'ręcznej':String(s).includes('oczekujące')?'oczekujące':s}
 function pill(s){return `<span class="pill ${enc(statusClass(s))}">${enc(s)}</span>`}
 function sourceType(t){const q=(t||'').toLowerCase();if(q.includes('komisj')&&(/zawiad|posiedzenie|termin/.test(q)))return TYPES[0];if(q.includes('interpel')||q.includes('zapytan'))return TYPES[1];if(q.includes('odpowied'))return TYPES[2];if(q.includes('projekt'))return TYPES[3];if(q.includes('uchwa'))return TYPES[4];if(q.includes('protok'))return TYPES[5];if(q.includes('głoso')||q.includes('gloso'))return TYPES[6];if(q.includes('porząd')||q.includes('porzad'))return TYPES[7];if(q.includes('obecno'))return TYPES[8];return TYPES[9]}
 function masterStatus(x){const s=(x||'').toLowerCase();if(/brak publikacji|brak dostępu|brak dostepu|niedostępn/.test(s))return 'wymagające ręcznej kontroli';if(/niepełn|niekomplet/.test(s))return 'niepełne';if(/odrzucon/.test(s))return 'odrzucone';return 'oczekujące na niezależne potwierdzenie'}
@@ -91,13 +94,12 @@ function item(raw,src='ręczny'){return {id:raw.id||id(),externalId:raw.external
 function addRecords(records,origin='import',kind='źródła'){let created=0,changed=0,dup=0,bid='B-'+new Date().toISOString().replace(/[-:.TZ]/g,'').slice(0,14)+'-'+String(db.batches.length+1);
  const seen=new Set();
  for(const raw of records){if(!(raw.title||raw.url||raw.externalId))continue;
- if(raw.digest&&db.processed.some(p=>p.key==='sha256:'+String(raw.digest).toLowerCase())){dup++;continue}
- const key=canon(raw.url||'')||raw.externalId||raw.title.toLowerCase();
+ const key=raw.externalId?('ID:'+raw.externalId):('URL:'+canon(raw.url||'')+'|'+(raw.title||'').trim().toLowerCase());
  if(seen.has(key)){dup++;continue}seen.add(key);
- let existing=db.sources.find(x=>(raw.externalId&&x.externalId===raw.externalId)||(raw.url&&canon(x.url)===canon(raw.url)));
- if(existing){const probe={...existing,title:raw.title||existing.title,type:sourceType(raw.type||existing.type),url:href(raw.url)||existing.url,session:raw.session||existing.session,digest:raw.digest||existing.digest,sourceState:raw.sourceState||existing.sourceState};
+ let existing=db.sources.find(x=>(raw.externalId&&x.externalId===raw.externalId)||(!raw.externalId&&!x.externalId&&raw.url&&canon(x.url)===canon(raw.url)&&(x.title||'').trim().toLowerCase()===(raw.title||'').trim().toLowerCase()));
+ if(existing){const probe={...existing,title:raw.title||existing.title,type:sourceType(raw.type||existing.type),url:href(raw.url)||existing.url,session:raw.session||existing.session,digest:raw.digest||existing.digest};
  if(domHash(probe)===domHash(existing)){dup++;continue}
- Object.assign(existing,{previous:{title:existing.title,url:existing.url,type:existing.type,session:existing.session,digest:existing.digest},title:probe.title,url:probe.url,type:probe.type,session:probe.session,digest:probe.digest,sourceState:probe.sourceState,updatedAt:now(),compareState:'zmienione',verified:false,verifiedAt:'',lock:false,independent:false,includePublication:false,status:'wymagające ręcznej kontroli',issue:'Wykryto zmianę metadanych źródła; ponowna weryfikacja',revision:(existing.revision||0)+1});changed++;continue}
+ Object.assign(existing,{previous:{title:existing.title,url:existing.url,type:existing.type,session:existing.session,digest:existing.digest},title:probe.title,url:probe.url,type:probe.type,session:probe.session,digest:probe.digest,updatedAt:now(),compareState:'zmienione',verified:false,verifiedAt:'',lock:false,independent:false,includePublication:false,status:'wymagające ręcznej kontroli',issue:'Wykryto zmianę metadanych źródła; ponowna weryfikacja',revision:(existing.revision||0)+1});changed++;continue}
  db.sources.push(item(raw,origin));created++;
  }
  db.batches.unshift({id:bid,time:now(),origin,kind,created,changed,duplicates:dup,total:records.length,masterVersion:db.masterVersion});event('import',`${origin}: nowych ${created}, zmienionych ${changed}, pominiętych ${dup}`,bid);persist();draw();notify(`Partia ${bid}: ${created} nowych, ${changed} zmienionych, ${dup} duplikatów`)}
@@ -106,8 +108,8 @@ function snapshot(){return Object.fromEntries(db.sources.map(s=>[s.externalId||c
 function counters(){let news=db.sources.filter(s=>s.compareState==='nowe').length,backfill=db.backfill.filter(x=>!x.closed).length,gaps=db.gaps.filter(x=>!x.closed).length,mismatch=db.sources.filter(s=>s.compareState==='zmienione'||s.issue||s.lastError).length+db.gaps.filter(x=>x.mismatch&&!x.closed).length;return {news,backfill,gaps,mismatch}}
 function draw(){document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));const c=counters();
  $('#statNew').textContent=c.news.toLocaleString('pl-PL');$('#statBackfill').textContent=c.backfill;$('#statGaps').textContent=c.gaps;$('#statDiff').textContent=c.mismatch;
- $('#statUpdates').textContent=fmtDay(db.lastUpdated);$('#contextInfo').textContent=`Master: ${db.masterVersion}; publiczna PWA: ${PUBLIC.observedVersion} (według repozytorium, nie synchronizowano).`;
- const views={sources:renderSources,import:renderImport,backfill:renderBackfill,compare:renderCompare,history:renderHistory,publish:renderPublish,settings:renderSettings};
+ $('#statUpdates').textContent=fmtDay(db.lastUpdated||db.seededAt);$('#contextInfo').textContent=`Master: ${db.masterVersion}; publiczna PWA: ${PUBLIC.observedVersion} (według repozytorium, nie synchronizowano).`;
+ const views={integration:renderIntegration,mail:renderMail,sources:renderSources,import:renderImport,backfill:renderBackfill,compare:renderCompare,history:renderHistory,publish:renderPublish,guide:renderGuide,settings:renderSettings};
  $('#content').innerHTML=views[page]();bindView()}
 function renderSources(){const rows=db.sources.filter(s=>(!statusFilter||s.status===statusFilter)&&(!search||[s.title,s.externalId,s.session,s.type,s.url].join(' ').toLowerCase().includes(search.toLowerCase()))).sort((a,b)=>sortMode==='recent'?b.updatedAt.localeCompare(a.updatedAt):a.title.localeCompare(b.title,'pl'));
 return `<section class="panel"><div class="headline"><div><h2>Rejestr źródeł</h2><div class="muted">${rows.length} wyników · ${db.sources.length} pozycji w bazie roboczej</div></div><div class="row"><button class="primary" id="addBtn">+ Dodaj źródło</button><button id="importShortcut">Importuj</button></div></div>
@@ -122,7 +124,7 @@ function renderEditor(){const s=db.sources.find(x=>x.id===selected);if(!s)return
 <div class="checks"><label><input id="editOfficial" type="checkbox" ${s.official?'checked':''}> Oficjalne źródło potwierdzone</label><label><input id="editRead" type="checkbox" ${s.read?'checked':''}> Treść dokumentu odczytana</label><label><input id="editIdentity" type="checkbox" ${s.identity?'checked':''}> ID / daty / relacje zgodne</label><label><input id="editIndependent" type="checkbox" ${s.independent?'checked':''}> Drugie źródło sprawdzone</label><label><input id="editInclude" type="checkbox" ${s.includePublication?'checked':''}> Uwzględnij w paczce</label></div>
 <div class="field" style="margin-top:10px"><label>Problem / niezgodność (puste = brak)</label><input id="editIssue" value="${enc(s.issue)}" placeholder="Np. niezgodna data w BIP"></div><div class="note">${s.lastError?enc(s.lastError):'Ocena HTTP jest pomocnicza; błędy CORS i timeout nie dowodzą braku publikacji.'}</div></div></div>
 ${s.previous?`<div class="alert">Poprzednia wersja: ${enc(s.previous.title)} · ${enc(s.previous.url)}. Sprawdź, czy zmiana jest uzasadniona.</div>`:''}
-<div class="row"><button id="saveEdit">Zapisz ustalenia</button><button class="primary" id="verifyBtn" ${s.lock&&s.verified?'disabled':''}>Oznacz jako zweryfikowane</button><button id="rejectBtn" class="danger">Odrzuć</button><span class="muted">${s.verified?'Zweryfikowano: '+fmt(s.verifiedAt):s.legacyProcessed?'Istnieje w masterze; nowe zatwierdzenie nie zostało potwierdzone':'Niezweryfikowane'}</span></div></section>`}
+<div class="row"><button id="newRevision" class="outline">Utwórz wersję do ponownej kontroli</button><button id="saveEdit">Zapisz ustalenia</button><button class="primary" id="verifyBtn" ${s.lock&&s.verified?'disabled':''}>Oznacz jako zweryfikowane</button><button id="rejectBtn" class="danger">Odrzuć</button><span class="muted">${s.verified?'Zweryfikowano: '+fmt(s.verifiedAt):s.legacyProcessed?'Istnieje w masterze; nowe zatwierdzenie nie zostało potwierdzone':'Niezweryfikowane'}</span></div></section>`}
 function renderImport(){return `<section class="panel"><div class="headline"><h2>Import materiałów i źródeł</h2><span class="muted">Pojedyncze przetwarzanie partii; duplikaty są pomijane</span></div>
 <div class="grid"><div><h3>Import master XLSX lub danych JSON/CSV</h3><p class="muted">Obsługiwane arkusze master: <span class="mono">Zrodla, Braki, Kolejka_Backfill_przekazanie, Rejestr_Odczytu, START</span>. Plik pozostaje na urządzeniu.</p><input type="file" id="importFile" accept=".xlsx,.json,.csv,.tsv"><p class="note">Przetworzone pozycje historyczne są oznaczane jako istniejące, lecz nie otrzymują nowego zatwierdzenia automatycznie.</p></div>
 <div><h3>Import listy adresów BIP</h3><p class="muted">Każda linia: URL | tytuł | rodzaj | sesja. Możesz wkleić również sam URL. Dopuszczalne tylko domeny urzędowe; inne adresy będą wymagały kontroli.</p>
@@ -139,7 +141,7 @@ function renderCompare(){let c=compareList();return `<section class="panel"><div
 function renderHistory(){return `<section class="panel"><div class="headline"><h2>Historia przetwarzania partiami</h2><span class="muted">Zachowywana lokalnie</span></div><div class="tablewrap"><table><thead><tr><th>Data</th><th>Partia</th><th>Źródło</th><th>Nowe</th><th>Zmodyfikowane</th><th>Pominięte (duplikaty)</th></tr></thead><tbody>${db.batches.map(b=>`<tr><td>${fmt(b.time)}</td><td class="mono">${enc(b.id)}</td><td>${enc(b.origin)}</td><td>${b.created}</td><td>${b.changed}</td><td>${b.duplicates}</td></tr>`).join('')}</tbody></table></div><h3>Rejestr ostatnich zmian</h3>${db.events.slice(0,150).map(e=>`<div class="log"><strong>${enc(e.action)}</strong> · ${fmt(e.time)} · ${enc(e.desc)}</div>`).join('')||'<div class="empty">Brak operacji</div>'}</section>`}
 function publishing(){const chosen=db.sources.filter(s=>s.includePublication),faults=[];
 if(!chosen.length)faults.push('Nie wybrano żadnych źródeł do publikacji.');
-const incoming=db.sources.filter(s=>s.compareState==='nowe'||s.compareState==='zmienione');
+const incoming=db.sources.filter(s=>(s.compareState==='nowe'||s.compareState==='zmienione') && !s.verified);
 const unresolved=incoming.filter(s=>!s.verified&&s.status!=='odrzucone');
 if(unresolved.length)faults.push(`Nierozstrzygnięte nowe lub zmienione źródła: ${unresolved.length}.`);
 for(const s of chosen){if(s.status!=='potwierdzone'||!s.verified||!s.lock)faults.push(`${s.externalId||s.title}: nieukończona weryfikacja.`);
@@ -158,10 +160,10 @@ function renderSettings(){return `<section class="panel"><h2>Ustawienia i bezpie
 <div><h3>Eksport / odtworzenie</h3><p class="muted">Kopia JSON odtwarza całą historię i oznaczenia. Ze względu na izolację przeglądarek i osadzeń Sites wykonuj regularny eksport kopii.</p><div class="row"><button id="backup" class="primary">Pobierz kopię danych</button><button id="restore">Wczytaj kopię</button></div></div></div>
 <hr><h3>Ograniczenia kontroli BIP</h3><p class="muted">Przeglądarka może nie mieć uprawnienia CORS do sprawdzania zewnętrznych adresów. Takiej sytuacji nie wolno oznaczać jako HTTP 404. Przeniesione, brakujące lub błędne strony należy zweryfikować ręcznie w oficjalnym BIP, zachowując URL, datę i dowód. Podobieństwo tytułów nie stanowi pewnego dowodu duplikatu; identyfikatory i SHA-256 mają pierwszeństwo.</p>
 <div class="row"><button class="danger" id="clearAll">Usuń wyłącznie lokalne dane tego panelu</button></div></section>`}
-function saveEditor(verify=false,reject=false){const s=db.sources.find(x=>x.id===selected);if(!s)return;const updated={title:$('#editTitle').value.trim(),url:href($('#editUrl').value),type:$('#editType').value,session:$('#editSession').value.trim()};
+function saveEditor(verify=false,reject=false){const s=db.sources.find(x=>x.id===selected);if(!s)return;if(s.lock&&s.verified){notify('Zablokowany rekord: utwórz nową wersję, aby wprowadzić zmianę.',true);return}const updated={title:$('#editTitle').value.trim(),url:href($('#editUrl').value),type:$('#editType').value,session:$('#editSession').value.trim()};
 if(!updated.title){notify('Podaj tytuł',true);return}
-const oldSig=domHash(s),oldFields={title:s.title,url:s.url,type:s.type,session:s.session,digest:s.digest};Object.assign(s,updated,{notes:$('#editNotes').value,status:$('#editStatus').value,reviewer:$('#editReviewer').value.trim(),independentUrl:href($('#editEvidence').value),official:$('#editOfficial').checked,read:$('#editRead').checked,identity:$('#editIdentity').checked,independent:$('#editIndependent').checked,issue:$('#editIssue').value.trim(),includePublication:$('#editInclude').checked,updatedAt:now()});
-if(oldSig!==domHash(s)){s.previous=oldFields;s.verified=false;s.verifiedAt='';s.lock=false;if(s.src!=='ręczne dodanie'){s.compareState='zmienione';s.issue=s.issue||'Zmieniono kluczowe pola — sprawdź dokument od nowa'}}
+const oldSig=domHash(s);Object.assign(s,updated,{notes:$('#editNotes').value,status:$('#editStatus').value,reviewer:$('#editReviewer').value.trim(),independentUrl:href($('#editEvidence').value),official:$('#editOfficial').checked,read:$('#editRead').checked,identity:$('#editIdentity').checked,independent:$('#editIndependent').checked,issue:$('#editIssue').value.trim(),includePublication:$('#editInclude').checked,updatedAt:now()});
+if(oldSig!==domHash(s)){s.previous=s.previous||{title:s.title,url:s.url,type:s.type,session:s.session};s.verified=false;s.verifiedAt='';s.lock=false;s.compareState='zmienione';s.issue=s.issue||'Zmieniono kluczowe pola — sprawdź dokument od nowa'}
 if(reject){s.status='odrzucone';s.verified=false;s.lock=true;s.includePublication=false;event('odrzucenie',s.title)}
 else if(verify){if(s.status!=='potwierdzone'){notify('Do weryfikacji ustaw status „potwierdzone”.',true);persist();draw();return}
 if(!s.official||!s.read||!s.identity||!s.independent||!s.independentUrl||!s.reviewer||s.issue||s.lastError||!s.url){notify('Nie spełniono bramek: źródło oficjalne, odczyt, ID, niezależny dowód z URL, weryfikujący oraz brak problemów.',true);persist();draw();return}
@@ -181,10 +183,10 @@ function downloadJSON(obj,name){const blob=new Blob([JSON.stringify(obj,null,2)]
 function fileImport(){const f=$('#fileInput');f.value='';f.click()}
 function bindView(){
 if(page==='sources'){
- $('#search').oninput=e=>{search=e.target.value;let i=e.target.selectionStart;draw();let f=$('#search');f.focus();f.setSelectionRange(i,i)};$('#statusFilter').onchange=e=>{statusFilter=e.target.value;draw()};$('#sortMode').onchange=e=>{sortMode=e.target.value;draw()};
+ $('#search').oninput=e=>{let p=e.target.selectionStart;search=e.target.value;draw();let t=$('#search');t.focus();t.setSelectionRange(p,p)};$('#statusFilter').onchange=e=>{statusFilter=e.target.value;draw()};$('#sortMode').onchange=e=>{sortMode=e.target.value;draw()};
  $('#addBtn').onclick=()=>{let s=item({title:'Nowy dokument',type:'inny dokument'},'ręczne dodanie');db.sources.unshift(s);selected=s.id;event('dodanie',s.title);persist();draw();$('#editor')?.scrollIntoView({behavior:'smooth'})};
  $('#importShortcut').onclick=()=>changePage('import');document.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{selected=b.dataset.edit;draw();$('#editor')?.scrollIntoView({behavior:'smooth'})});
- if(selected&&$('#editor')){$('#closeEditor').onclick=()=>{selected=null;draw()};$('#saveEdit').onclick=()=>saveEditor(false);$('#verifyBtn').onclick=()=>saveEditor(true);$('#rejectBtn').onclick=()=>{if(confirm('Odrzucić źródło?'))saveEditor(false,true)};
+ if(selected&&$('#editor')){$('#newRevision').onclick=()=>{let s=db.sources.find(x=>x.id===selected);if(!s||!confirm('Rozpocząć nową wersję dokumentu? Poprzednia weryfikacja pozostanie w historii.'))return; s.previous={title:s.title,url:s.url,type:s.type,session:s.session,digest:s.digest,status:s.status,verifiedAt:s.verifiedAt};s.lock=false;s.verified=false;s.verifiedAt='';s.compareState='zmienione';s.status='wymagające ręcznej kontroli';s.includePublication=false; s.revision=(s.revision||0)+1;event('nowa wersja',s.title);persist();draw()};$('#closeEditor').onclick=()=>{selected=null;draw()};$('#saveEdit').onclick=()=>saveEditor(false);$('#verifyBtn').onclick=()=>saveEditor(true);$('#rejectBtn').onclick=()=>{if(confirm('Odrzucić źródło?'))saveEditor(false,true)};
  $('#checkUrl').onclick=()=>{let url=href($('#editUrl').value);checkRemote(url,$('#checkUrl'))};}
 }
 if(page==='import'){
@@ -211,14 +213,14 @@ if(page==='settings'){$('#backup').onclick=backup;$('#restore').onclick=fileImpo
 function backup(){downloadJSON({backupType:'malbork-ix-control',exportedAt:now(),data:db},'kontrola-radnego-IX-kopia-'+new Date().toISOString().slice(0,10)+'.json')}
 async function importFile(file){try{const lower=file.name.toLowerCase();if(lower.endsWith('.xlsx')){let sheets=await xlsxToSheets(await file.arrayBuffer(),['Zrodla','Braki','Kolejka_Backfill_przekazanie','Rejestr_Odczytu','START']);
 if(!sheets.Zrodla)throw Error('Nie znaleziono arkusza Zrodla');
-const firstMaster=!db.masterFile;let v=(sheets.START||[]).find(x=>Object.values(x).includes('Wersja bazy'));db.masterVersion=v?.Wartość||v?.B||'wersja nieustalona';db.masterFile=file.name;
+let v=(sheets.START||[]).find(x=>x.Pole==='Wersja bazy');db.masterVersion=v?.Wartość||'wersja nieustalona';db.masterFile=file.name;
 const readMap=new Map((sheets.Rejestr_Odczytu||[]).map(x=>[x.Dokument_ID,x]));
-let records=sheets.Zrodla.map(r=>({externalId:r.Źródło_ID||r.Zrodlo_ID,title:r.Tytuł_lub_lokalizator,type:r.Typ,session:r.Sesja_ID,url:r.URL_lub_file_id,priority:r.Priorytet,status:r.Status,sourceState:r.Status,notes:r.Uwagi,legacyProcessed:!!r.Status?.toLowerCase().includes('przetworzony')||!!readMap.has(r.Źródło_ID)}));
+let records=sheets.Zrodla.map(r=>({externalId:r.Źródło_ID||r.Zrodlo_ID,title:r.Tytuł_lub_lokalizator,type:r.Typ,session:r.Sesja_ID,url:r.URL_lub_file_id,priority:r.Priorytet,status:r.Status,notes:r.Uwagi,legacyProcessed:!!r.Status?.toLowerCase().includes('przetworzony')||!!readMap.has(r.Źródło_ID)}));
 if(!db.checkpointAt){db.checkpoint={};db.checkpointAt=now()}
 const gapIndex=new Set(db.gaps.map(g=>g.externalId));for(let r of(sheets.Braki||[])){if(!r.Brak_ID||gapIndex.has(r.Brak_ID))continue;db.gaps.push({id:id(),externalId:r.Brak_ID,scope:r.Zakres||'',desc:r.Opis||'',expected:r.Oczekiwane_źródło||'',originalStatus:r.Status||'',mismatch:/niespójn|rozbieżn|niezgodno/.test((r.Status||'').toLowerCase()),closed:/zamknięt|przetworzony(?! z brakami)/.test((r.Status||'').toLowerCase())})}
 const bfIndex=new Set(db.backfill.map(g=>g.scope));for(let r of(sheets.Kolejka_Backfill_przekazanie||[])){if(!r.Zakres||bfIndex.has(r.Zakres))continue;db.backfill.push({id:id(),scope:r.Zakres,priority:r.Priorytet||'P2',diagnosis:r['Diagnoza ze źródeł']||'',action:r['Działanie w wątku Backfill IX']||'',originalStatus:r.Status||'',closed:/potwierdzone|ukończon|zamknięt/.test((r.Status||'').toLowerCase())})}
 const processed=new Set(db.processed.map(x=>x.key+'|'+x.signature));for(let r of(sheets.Rejestr_Odczytu||[])){if(!r.Dokument_ID||!r.SHA256||!r.Pełny_odczyt?.toLowerCase().includes('tak'))continue;let key='sha256:'+r.SHA256.toLowerCase();if(processed.has(key+'|'+r.SHA256))continue;db.processed.push({key,signature:r.SHA256,time:now(),reviewer:'master ('+db.masterVersion+')',externalId:r.Dokument_ID,legacy:true});processed.add(key+'|'+r.SHA256)}
-addRecords(records,'master '+db.masterVersion,'master XLSX');if(firstMaster){db.sources.filter(s=>s.src==='master '+db.masterVersion).forEach(s=>s.compareState='bazowe');db.checkpoint=snapshot();db.checkpointAt=now()}event('master','Zaimportowano rejestry Braki / Backfill / Rejestr_Odczytu');persist();draw();
+addRecords(records,'master '+db.masterVersion,'master XLSX');event('master','Zaimportowano rejestry Braki / Backfill / Rejestr_Odczytu');persist();draw();
 }else if(lower.endsWith('.json')){let data=JSON.parse(await file.text());if(data.backupType==='malbork-ix-control'&&data.data?.schema===2){if(!confirm('Odtworzyć kopię? Zastąpi bieżące lokalne dane panelu.'))return;db=data.data;persist();draw();notify('Przywrócono kopię danych')}else if(Array.isArray(data))addRecords(data,'JSON');else if(Array.isArray(data.sources))addRecords(data.sources,'JSON');else throw Error('Nieznana struktura JSON');
 }else if(lower.endsWith('.csv')||lower.endsWith('.tsv')){let t=await file.text();let delimiter=lower.endsWith('.tsv')?'\t':(t.split('\n')[0].includes(';')?';':',');let records=csvObjects(t,delimiter);addRecords(records.map(r=>({title:r.title||r.Tytuł||r.Tytuł_lub_lokalizator,url:r.url||r.URL_lub_file_id,type:r.type||r.Typ,session:r.session||r.Sesja_ID,externalId:r.id||r.Źródło_ID||''})),file.name)}
 else throw Error('Obsługiwane są XLSX/JSON/CSV/TSV')}catch(e){notify('Import nieudany: '+e.message,true);console.error(e)}}
@@ -235,5 +237,67 @@ if(Object.values(obj).some(v=>v!==''))output.push(obj)}
 const head=output.shift()||{};let colNames=Object.fromEntries(Object.entries(head).map(([k,v])=>[k,String(v).trim()]));results[name]=output.map(r=>Object.fromEntries(Object.entries(r).map(([c,v])=>[colNames[c]||c,v]))).filter(x=>Object.values(x).some(Boolean))}
 return results}
 $('#fileInput').addEventListener('change',e=>{const f=e.target.files[0];if(f)importFile(f)});
-draw();fetch('https://jarekdymek.github.io/Asystent-Radnego-Malbork/version.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(v=>{if(v?.version){PUBLIC.observedVersion=v.version;draw()}}).catch(()=>{});
+
+/* Independent read-only integration + private mail-audit extension */
+const Q=(s)=>enc(s);
+const qty=(n)=>Number(n||0).toLocaleString('pl-PL');
+function dataPane(count,label){return `<div class="stat"><div class="n">${qty(count)}</div><small>${Q(label)}</small></div>`}
+function renderIntegration(){const pm=db.publicMeta||{},s=pm.statistics||{};
+let pub=(db.publicLetters||[]),unmatched=pub.filter(x=>!(x.questionIds||[]).length);
+let needle=integrationSearch.trim().toLowerCase(), references=(db.interpelacje||[]).filter(x=>!needle||[x.id,x.topic,x.councillor,x.session].join(' ').toLowerCase().includes(needle)).slice(0,45);
+return `<section class="panel"><div class="headline"><div><h2>Połączenie z publicznym Asystentem Radnego</h2><p class="muted">Kontrola spójności i odnośników · bez dublowania publicznej wyszukiwarki</p></div><div class="row"><a target="_blank" rel="noopener" href="${PUBLIC.url}">Otwórz publiczną PWA ↗</a><button id="checkManifest" class="outline">Sprawdź wersję online</button></div></div>
+<div class="banner"><b>Stan referencyjny:</b> PWA <b>${Q(pm.version||'1.61.0')}</b> (manifest z ${Q(pm.published||'2026-11-10')}) · master <b>${Q(db.masterVersion||'—')}</b>. Weryfikowane materiały trafiają do kolejki roboczej, nigdy do publicznego GitHuba bez zatwierdzenia.</div>
+<div class="stats" style="grid-template-columns:repeat(3,1fr)">${dataPane(s.interpelacje,'Interpelacje / zapytania')}${dataPane(s.odpowiedzi,'Odpowiedzi w publicznej PWA')}${dataPane(s.uchwaly,'Uchwały')}${dataPane(s.glosowania,'Głosowania')}${dataPane(s.glosy_imienne,'Pojedyncze głosy imienne')}${dataPane((db.sources||[]).length,'Źródła master zaimportowane')}</div>
+<div class="grid"><div class="item"><h3>Różnica master → wersja PWA 1.61.0</h3><p>Odpowiedzi w master 1.58: <b>${qty((db.odpowiedzi||[]).length)}</b></p><p>Odpowiedzi w PWA 1.61.0: <b>${qty(s.odpowiedzi)}</b></p><p>Udokumentowany pakiet 10.11: <b>${qty(pm.mail_delta?.count)}</b> nowych pism, w tym <b>${qty(pm.mail_delta?.unmatched)}</b> bez pewnego powiązania.</p><p class="note">Te 32 pisma zostały już wliczone do publicznej bazy. Import wiadomości email jest dowodem pochodzenia, nie nową odpowiedzią.</p></div>
+<div class="item"><h3>Braki w pakiecie 10.11</h3><p>Nieprzypisane: <b>${unmatched.length}</b></p>${unmatched.map(x=>`<p>${Q(x.id)} – ${Q(x.topic)} (${Q(x.councillor)})</p>`).join('')}
+<p>Odczyt pełnych 55 stron skanów: <b>do uzupełnienia</b>.</p><p class="note">Na podstawie publicznych metadanych; nie utożsamiaj etykiety „powiązane” z weryfikacją tekstu.</p></div></div>
+<hr><h3>Sprawdzenie identyfikatora sprawy w master</h3><div class="controls"><input id="integrationSearch" type="search" value="${Q(integrationSearch)}" placeholder="ID sprawy, temat, radny, sesja"></div>
+<div class="tablewrap"><table><thead><tr><th>Sprawa</th><th>Radny</th><th>Temat</th><th>Status historyczny master</th></tr></thead><tbody>${references.map(i=>`<tr><td class="mono">${Q(i.id)}</td><td>${Q(i.councillor)}</td><td>${Q(i.topic)}</td><td>${Q(i.status)}</td></tr>`).join('')}</tbody></table></div>
+<p class="note">Pokazano maksymalnie 45 pasujących wpisów; to indeks kontrolny. Pełne przeglądanie odbywa się w publicznej PWA.</p></section>`}
+function renderMail(){let list=(db.mails||[]).filter(x=>(mailFilter==='all'||(mailFilter==='active'&&!(x.reviewStatus||x.initialStatus).includes('minął')&&x.reviewStatus!=='zamknięte')||mailFilter===x.reviewStatus) && (!mailSearch||[x.subject,x.summary,x.category,x.id].join(' ').toLowerCase().includes(mailSearch.toLowerCase()))).sort((a,b)=>b.date.localeCompare(a.date));
+let active=db.mails?.filter(x=>x.reviewStatus!=='zamknięte'&&!['informacyjne','termin minął'].includes(x.initialStatus)).length||0;
+return `<section class="panel"><div class="headline"><div><h2>Rejestr korespondencji radnego</h2><p class="muted">${qty((db.mails||[]).length)} wiadomości z konta rady · ${qty(active)} do sprawdzenia według roboczej kwalifikacji</p></div><button id="exportMail" class="outline">Eksport prywatnego rejestru</button></div>
+<div class="alert"><b>Dane prywatne.</b> To migawka Gmail z 14.11.2026 (bez pełnej treści i skanów), nie działająca w tle synchronizacja. Dostęp do wiadomości po otwarciu linku wymaga zalogowania na właściwym koncie. Nie udostępniaj prywatnego pliku HTML ani jego kopii.</div>
+<div class="controls"><input id="mailSearch" type="search" value="${Q(mailSearch)}" placeholder="Szukaj tematu lub ID wiadomości"><select id="mailFilter"><option value="all" ${mailFilter==='all'?'selected':''}>Wszystkie</option><option value="active" ${mailFilter==='active'?'selected':''}>Wymagające kontroli</option><option value="zamknięte" ${mailFilter==='zamknięte'?'selected':''}>Zamknięte</option></select><button id="addFromMail" class="outline">Pokaż źródła do powiązania</button></div>
+<div class="tablewrap"><table><thead><tr><th>Data / temat</th><th>Kategoria</th><th>Kwalifikacja</th><th>Załączniki</th><th>Obsługa</th></tr></thead><tbody>${list.map(m=>`<tr><td><b>${Q(m.subject)}</b><div class="note">${Q(m.date)}</div></td><td>${Q(m.category)}</td><td>${pill(m.reviewStatus||m.initialStatus)}</td><td>${m.attachments?.length||0}</td><td><button class="tiny outline" data-mail="${Q(m.id)}">Otwórz kartę</button></td></tr>`).join('')}</tbody></table></div>
+${selectedMail?mailDetails():''}</section>`}
+function mailDetails(){let m=db.mails.find(x=>x.id===selectedMail);if(!m)return'';return `<div class="panel" id="mailDetails" style="margin-top:18px"><div class="headline"><h2>${Q(m.subject)}</h2><button id="closeMail">Zamknij</button></div>
+<p class="muted">${Q(m.date)} · ${Q(m.account)} · wiadomość ${Q(m.id)}</p><p>${Q(m.summary)}</p><h3>Załączniki (${m.attachments.length})</h3><p class="note">${m.attachments.map(Q).join(' • ')||'Brak'}</p>
+<div class="grid"><div class="field"><label>Wewnętrzny status obsługi</label><select id="mailStatus">${['do kontroli','do analizy','do przeglądu','powiązanie z PWA','termin minął','informacyjne','zamknięte'].map(x=>`<option value="${x}" ${(m.reviewStatus||m.initialStatus)===x?'selected':''}>${x}</option>`).join('')}</select></div><div class="field"><label>Powiązanie z ID sprawy / BIP (opcjonalnie)</label><input id="mailLinked" value="${Q(m.linkedId||'')}" placeholder="Np. INT-XXXVI-IX54-39"></div></div>
+<div class="field"><label>Notatka kontrolna</label><textarea id="mailNote">${Q(m.operatorNote||'')}</textarea></div>
+<div class="row"><button id="saveMail" class="primary">Zapisz obsługę</button><a href="${Q(m.gmailUrl)}" target="_blank" rel="noopener noreferrer">Otwórz oryginalny e-mail ↗</a></div>
+<p class="note">Status „zamknięte” dotyczy obsługi korespondencji, nie potwierdzenia dokumentu BIP ani publikacji.</p></div>`}
+const WALK=[
+['Wprowadź lub odczytaj dane','Źródła master i metadane PWA 1.61.0 pozostają w oddzielnych warstwach. Uzgodnij identyfikatory i sprawdź liczniki.'],
+['Sprawdź nową korespondencję','Najpierw otwórz kartę e-maila, następnie skan lub link w Gmailu. Nie powielaj już zaindeksowanych 32 odpowiedzi.'],
+['Dodaj nowe źródło BIP','Nowe zawiadomienie lub dokument trafia do rejestru jako oczekujące, nigdy jako automatycznie potwierdzone.'],
+['Rozstrzygnij braki i duplikaty','Porównaj dokument z wersją historyczną, sprawdź załączniki i kolejkę backfillu.'],
+['Wykonaj dwustopniową kontrolę','Wymagane są: oficjalny dokument, odczyt, zgodny identyfikator, niezależny dowód i nazwisko sprawdzającego.'],
+['Przygotuj paczkę','Dopiero po spełnieniu bramek powstaje manifest JSON do ręcznego wydania. Publiczna aplikacja i jej pliki pozostają bez zmian.']
+];
+function renderGuide(){return `<section class="panel"><div class="headline"><h2>Interaktywny samouczek</h2><a href="samouczek.html" target="_blank" rel="noopener">Otwórz animowaną prezentację ↗</a></div><p class="muted">Podstawowy przepływ pracy radnego — od informacji o nowym materiale do bezpiecznej paczki publikacyjnej.</p>
+<div class="cardlist">${WALK.map((x,i)=>`<div class="item"><div class="pill">Etap ${i+1}/6</div><h3>${Q(x[0])}</h3><p>${Q(x[1])}</p></div>`).join('')}</div><div class="row" style="margin-top:14px"><button class="primary" id="playTour">Uruchom pokaz w panelu</button></div></section>`}
+let tourIndex=0;function tourModal(){let old=document.querySelector('#tourModal');old?.remove();let w=document.createElement('div');w.id='tourModal';w.style.cssText='position:fixed;inset:0;z-index:50;background:#07182bc9;display:grid;place-items:center;padding:15px';w.innerHTML=`<div style="max-width:650px;width:100%;background:#fff;border-radius:20px;padding:27px;box-shadow:0 25px 60px #0005"><div class="row"><span class="pill">Instrukcja ${tourIndex+1}/6</span><button id="tourClose" class="right tiny">Zamknij</button></div><div style="height:8px;margin:20px 0;background:#e5ecf7;border-radius:9px;overflow:hidden"><div style="width:${100*(tourIndex+1)/6}%;height:100%;background:#135bc2;transition:width .3s"></div></div><h2 style="margin:5px 0 14px">${Q(WALK[tourIndex][0])}</h2><p style="font-size:17px;line-height:1.55;min-height:85px">${Q(WALK[tourIndex][1])}</p><div class="row"><button id="tourPrev" ${tourIndex===0?'disabled':''}>Wstecz</button><button class="primary right" id="tourNext">${tourIndex===5?'Zakończ':'Dalej'}</button></div></div>`;
+document.body.appendChild(w);document.querySelector('#tourClose').onclick=()=>w.remove();document.querySelector('#tourPrev').onclick=()=>{tourIndex=Math.max(0,tourIndex-1);tourModal()};document.querySelector('#tourNext').onclick=()=>{if(tourIndex===5){w.remove();return}tourIndex++;tourModal()};}
+function seedPanel(){let m=JSON.parse(document.getElementById('masterSeed')?.textContent||'null');let p=JSON.parse(document.getElementById('publicSeed')?.textContent||'null');let priv=JSON.parse(document.getElementById('privateMailSeed')?.textContent||'null');
+if(!m||!p)return;
+if(!db.seedApplied){db.masterVersion=m.masterVersion;db.masterFile=m.sourceFile;db.interpelacje=m.interpelacje||[];db.odpowiedzi=m.odpowiedzi||[];db.readAudit=m.read||[];db.sources=(m.sources||[]).map(r=>{let v=item(r,'master '+m.masterVersion);v.legacyStatus=r.legacyStatus||'';v.legacyRead=r.legacyRead||'';v.originalType=r.originalType||'';v.originLocator=r.originLocator||'';v.compareState='stan bazowy';v.foundAt='2026-10-30T00:00:00Z';v.updatedAt=v.foundAt;return v});
+db.gaps=(m.gaps||[]).map(r=>({...r,id:id(),mismatch:/niespójn|niezgodno|rozbieżn/i.test(r.originalStatus||''),closed:!!r.closed}));db.backfill=(m.backfill||[]).map(r=>({...r,id:id()}));
+db.processed=(m.read||[]).filter(x=>x.hash&&x.fullRead?.toLowerCase().startsWith('tak')).map(x=>({key:'sha256:'+x.hash.toLowerCase(),signature:x.hash,time:'2026-10-30T00:00:00Z',externalId:x.id,legacy:true}));
+db.seedApplied='master-v1.58';db.seededAt='2026-11-14T10:38:00+01:00';db.checkpoint=snapshot();db.checkpointAt=db.seededAt;db.batches.unshift({id:'SEED-IX158',time:db.seededAt,origin:'archiwum master',kind:'stan bazowy',created:db.sources.length,changed:0,duplicates:0,total:db.sources.length});event('stan bazowy','Zaimportowano master 1.58 (bez nowych zatwierdzeń)');}
+db.publicMeta=p;
+if(!db.publicLetters)db.publicLetters=[];
+if(priv&&Array.isArray(priv.messages)){const known=new Set((db.mails||[]).map(x=>x.id));db.mails=(db.mails||[]).concat(priv.messages.filter(x=>!known.has(x.id)).map(x=>({...x,reviewStatus:x.initialStatus,linkedId:'',operatorNote:''})));db.mailSnapshotAt=priv.snapshotAt;}
+else db.mails=db.mails||[];
+persist();}
+function bindExtra(){if(page==='integration'){$('#integrationSearch').oninput=e=>{let p=e.target.selectionStart;integrationSearch=e.target.value;draw();let z=$('#integrationSearch');z.focus();z.setSelectionRange(p,p)};
+$('#checkManifest').onclick=async()=>{try{let r=await fetch('https://raw.githubusercontent.com/JarekDymek/Asystent-Radnego-Malbork/main/version.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);let js=await r.json();let current=(db.publicMeta||{}).version;$('#checkManifest').textContent='Online: '+js.version;notify(js.version===current?'Wersja zgodna z katalogiem audytu.':'Uwaga: wersja PWA zmieniła się ('+current+' → '+js.version+').',js.version!==current)}catch(e){notify('Nie udało się potwierdzić manifestu online; zachowano stan referencyjny. '+e.message,true)}};}
+if(page==='mail'){$('#mailSearch').oninput=e=>{let p=e.target.selectionStart;mailSearch=e.target.value;draw();let z=$('#mailSearch');z.focus();z.setSelectionRange(p,p)};$('#mailFilter').onchange=e=>{mailFilter=e.target.value;draw()};$('#exportMail').onclick=()=>downloadJSON({snapshotAt:db.mailSnapshotAt,mails:db.mails,private:true},'radny-mail-prywatna-kopia-'+new Date().toISOString().slice(0,10)+'.json');$('#addFromMail').onclick=()=>changePage('sources');document.querySelectorAll('[data-mail]').forEach(b=>b.onclick=()=>{selectedMail=b.dataset.mail;draw();$('#mailDetails')?.scrollIntoView({behavior:'smooth'})});if(selectedMail&&$('#mailDetails')){$('#closeMail').onclick=()=>{selectedMail=null;draw()};$('#saveMail').onclick=()=>{let m=db.mails.find(x=>x.id===selectedMail);m.reviewStatus=$('#mailStatus').value;m.linkedId=$('#mailLinked').value.trim();m.operatorNote=$('#mailNote').value.trim();event('obsługa e-mail',m.subject+' – '+m.reviewStatus);persist();draw();notify('Zapisano status obsługi wiadomości.')}}}
+if(page==='guide')$('#playTour').onclick=()=>{tourIndex=0;tourModal()};}
+const origBind=bindView;
+bindView=function(){origBind();bindExtra()};
+if(document.getElementById('letterSeed')){try{let x=JSON.parse(document.getElementById('letterSeed').textContent);db.publicLetters=x;}catch(e){console.warn('Nie udało się wczytać wykazu 32 pism',e)}}
+if(!document.getElementById('masterSeed')){db.publicMeta=db.publicMeta||{version:'1.61.0',published:'2026-11-10',statistics:{interpelacje:817,odpowiedzi:709,glosowania:336,glosy_imienne:6207,uchwaly:249},mail_delta:{count:32,linked:30,unmatched:2}};db.interpelacje=db.interpelacje||[];db.odpowiedzi=db.odpowiedzi||[];db.publicLetters=db.publicLetters||[];db.mails=db.mails||[];}
+seedPanel();
+draw();
 </script></body></html>
