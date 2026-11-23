@@ -1,44 +1,43 @@
 {
-  "version": "1.61.0",
-  "revision": "2026-11-10",
-  "published": "2026-11-10",
-  "dataset": "IX kadencja Rady Miasta Malborka · Audyt Uchwał",
-  "payload": "data/katalog-v1.61.0.html.gz",
-  "payload_sha256": "6c3c1594842de033b63e3fafb268482e0477673c2e34a6ba50828ae7f8570854",
-  "database": "data/katalog-operacyjny-v1.61.0.sqlite.gz",
-  "database_sha256": "fba2d5a145f9accb584fa6f9bee2c5a9af09f08ddb9666e01b88fb2d1ff206ac",
+  "version": "1.63.0",
+  "ui_version": "1.63.0",
+  "data_version": "1.63.0",
+  "revision": "2026-11-22",
+  "published": "2026-11-23",
+  "dataset": "IX kadencja Rady Miasta Malborka · publiczna projekcja master v1.63",
+  "payload": "data/katalog-v1.63.0.html.gz",
+  "payload_sha256": "9f9b8c357fbbc3d096a91132d724824fc41f103d65f60f58e1894c966dcce431",
+  "database": "data/katalog-operacyjny-v1.63.0.sqlite.gz",
+  "database_sha256": "005a52a88766b984eb56565ece36a58614d9f6c009f7b16e5455614cdaaf4e55",
+  "source_master_version": "v1.63",
+  "source_master_sha256": "58462d7f7f0a2e69c14808d882ed881d0845f9cdc66e1bddbd54dd59b53fdb21",
+  "public_release_scope": "Verified public records only. Excluded private mail and not independently published Gmail projects.",
   "statistics": {
     "interpelacje": 817,
-    "odpowiedzi": 709,
+    "odpowiedzi": 710,
     "glosowania": 336,
     "glosy_imienne": 6207,
-    "uchwaly": 249,
+    "uchwaly": 255,
     "akty_audytu": 251
   },
-  "ui_version": "1.61.0",
-  "data_version": "1.61.0",
   "recent_update": {
-    "id": "MAIL-20261110",
-    "date": "2026-11-10",
-    "heading": "Nowe odpowiedzi na interpelacje",
-    "new_letters": 32,
-    "linked_letters": 30,
-    "linked_cases": 32,
-    "unmatched_letters": 2,
-    "summary": "Z poczty Rady Miasta dodano metadane 32 nowych pism; 30 przypisano do konkretnych interpelacji. Pełne teksty 55 zeskanowanych stron wymagają dalszej transkrypcji.",
-    "notice": "Baza zaktualizowana. Do pełnego zamknięcia potrzebna jest transkrypcja i rozstrzygnięcie 2 nieprzypisanych pism.",
+    "id": "IX63-PUBLIC-20261123",
+    "date": "2026-11-23",
+    "heading": "Uchwały XXXVI i informacja o ul. Targowej",
+    "new_items": 7,
+    "new_letters": 0,
+    "new_acts": 6,
+    "media_notes": 1,
+    "summary": "Dodano sześć zweryfikowanych uchwał XXXVI/297–302/2026 oraz odrębną publiczną relację o wypowiedzi burmistrza dotyczącej ul. Targowej.",
+    "notice": "Relacja medialna nie zastępuje urzędowej odpowiedzi na interpelację. Projekty z korespondencji radnych i skany pozostają poza publikacją.",
     "samples": [
       {
-        "person": "Marta Dorobek",
-        "topic": "RedLight i spotkania o autyzmie"
+        "person": "Rada Miasta Malborka",
+        "topic": "Uchwały XXXVI/297–302/2026"
       },
       {
-        "person": "Jarosław Dymek",
-        "topic": "Bezpieczeństwo przy szkołach i Park Kieszonkowy"
-      },
-      {
-        "person": "Małgorzata Sobczak",
-        "topic": "Zadłużenie zasobu komunalnego"
+        "person": "Burmistrz Malborka",
+        "topic": "Ulica Targowa — relacja prasowa, nie potwierdzony dokument urzędowy"
       }
     ]
   }

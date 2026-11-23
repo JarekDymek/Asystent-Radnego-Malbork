@@ -72,7 +72,7 @@ async function getVersion(){
 function showLatestNews(m){
  const a=m.recent_update;const b=q('newDataButton');
  if(!a)return;
- b.hidden=false;b.textContent='Nowe dane ('+a.new_letters+')';
+ b.hidden=false;b.textContent='Nowe dane ('+(a.new_items ?? a.new_letters)+')';
  q('newsTitle').textContent=a.heading+' · '+a.date;
  q('newsSummary').textContent=a.summary;
  q('newsNotice').textContent=a.notice;
