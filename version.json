@@ -1,6 +1,6 @@
 {
-  "version": "1.64.0",
-  "ui_version": "1.64.0",
+  "version": "1.64.1",
+  "ui_version": "1.64.1",
   "data_version": "1.63.0",
   "revision": "2026-11-22",
   "published": "2026-11-24",
@@ -44,6 +44,12 @@
   "analysis": {
     "schema": 1,
     "path": "data/analiza-uchwal.json",
-    "scope": "public agenda + local private import"
+    "scope": "public agenda + local private import",
+    "archive": {
+      "source": "existing catalog",
+      "resolutions": 255,
+      "sessions_with_resolutions": 35,
+      "coverage": "metadata and existing audit; full project evaluations pending"
+    }
   }
 }
