@@ -1,5 +1,11 @@
 # Asystent Radnego — zmiany
 
+## 1.64.0 (2026-11-24)
+
+- Zakładka Analiza uchwał, publiczny porządek XXXVII sesji, lokalny import raportów, historia wersji, pytania i notatki.
+- Porównanie z dotychczasowym indeksem uchwał, audytem oraz zaimportowanymi pełnymi tekstami.
+- Buforowanie modułu offline; dane katalogowe pozostają w wersji 1.63.0.
+
 ## 1.63.0 (2026-11-23)
 
 - Publiczna projekcja zweryfikowanych rekordów centralnego mastera v1.63 (stan na 22.11.2026).
