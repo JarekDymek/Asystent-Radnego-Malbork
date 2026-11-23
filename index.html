@@ -32,6 +32,8 @@ body.has-message #appFrame{height:calc(100dvh - 98px)}
 .new-data-panel{position:fixed;z-index:50;top:65px;left:0;right:0;max-height:75vh;overflow-y:auto;background:#ebf5ff;color:#14314c;border-bottom:3px solid #2b739d;box-shadow:0 8px 28px #0004;padding:14px}
 .new-data-inner{max-width:780px;margin:auto;line-height:1.5}.new-data-inner h2{margin:.2em 0}.new-data-inner #closeNews{float:right}.new-data-inner p{margin:8px 0}.new-data-inner ul{padding-left:22px}.new-data-inner small{color:#48647b}
 @media(max-width:450px){#newDataButton{font-size:11px;padding:6px}.brand strong{font-size:11px}.new-data-panel{top:65px}}
+
+body{display:flex;flex-direction:column;height:100dvh}#appHeader,#message,#moduleTabs{flex-shrink:0}#moduleTabs{display:flex;gap:8px;padding:6px 12px;background:#143b5b;z-index:2}#moduleTabs .btn{min-height:36px;padding:5px 12px}#moduleTabs .btn[aria-selected=true]{background:#116652;border-color:#6bb29b}#appFrame,body.has-message #appFrame,#analysisFrame{border:0;width:100%;height:auto;min-height:0;flex:1;display:block;background:#f4f6fa}#placeholder{position:static;flex:1;min-height:0}#placeholder:not([hidden])+ #appFrame{display:none}
 </style>
 </head>
 <body>
@@ -44,8 +46,10 @@ body.has-message #appFrame{height:calc(100dvh - 98px)}
 </header>
 <div id="message" role="status" hidden></div>
 <section id="newDataPanel" class="new-data-panel" hidden role="region" aria-label="Informacje o aktualizacji bazy"><div class="new-data-inner"><button type="button" id="closeNews" class="btn">Zamknij / przeczytane</button><h2 id="newsTitle"></h2><p id="newsSummary"></p><p id="newsNotice"></p><ul id="newsSamples"></ul><small>Oryginały źródeł są w prywatnej Bibliotece. Tu udostępniane są tylko metadane.</small></div></section>
+<nav id="moduleTabs" aria-label="Moduły aplikacji"><button type="button" class="btn" id="catalogButton" aria-selected="true">Katalog</button><button type="button" class="btn" id="analysisButton" aria-selected="false">Analiza uchwał</button></nav>
 <div id="placeholder"><div class="loader" role="progressbar" aria-label="Wczytywanie bazy"></div><strong>Otwieranie katalogu Rady Miasta Malborka</strong><p>Wczytuję zweryfikowaną bazę interpelacji, głosowań i uchwał. Po pierwszym uruchomieniu aplikacja działa również bez internetu.</p></div>
 <iframe title="Wyszukiwarka i audyt uchwał" id="appFrame" loading="eager"></iframe>
+<iframe id="analysisFrame" title="Analiza uchwał" hidden></iframe>
 <script>
 'use strict';
 const q=id=>document.getElementById(id);
@@ -117,7 +121,17 @@ async function checkUpdates({quiet=false,apply=false}={}){
   status((navigator.onLine?'Błąd odświeżania: ':'Brak połączenia. ')+e.message,activeVersion?'warn':'error');
  }finally{busy=false;q('updateButton').disabled=false;}
 }
-q('updateButton').addEventListener('click',()=>checkUpdates({apply:updateAvailable}));
+function showModule(name){
+ const on=name==='analysis',f=q('analysisFrame');
+ q('catalogButton').setAttribute('aria-selected',String(!on));
+ q('analysisButton').setAttribute('aria-selected',String(on));
+ q('appFrame').hidden=on;f.hidden=!on;
+ q('placeholder').style.display=on?'none':'';
+ if(on){q('newDataPanel').hidden=true;if(!f.getAttribute('src'))f.src='./analiza-uchwal.html';else f.contentWindow.postMessage('ar-refresh-analysis',location.origin)}
+}
+q('catalogButton').onclick=()=>showModule('catalog');
+q('analysisButton').onclick=()=>showModule('analysis');
+q('updateButton').addEventListener('click',()=>{checkUpdates({apply:updateAvailable});const f=q('analysisFrame');if(!f.hidden&&f.getAttribute('src'))f.contentWindow.postMessage('ar-refresh-analysis',location.origin);});
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;q('installButton').hidden=false});
 q('installButton').addEventListener('click',async()=>{
  if(deferredInstall){deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;q('installButton').hidden=true;return}
