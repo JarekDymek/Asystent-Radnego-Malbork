@@ -1,0 +1,272 @@
+{
+  "schema": 1,
+  "updated": "2026-11-24",
+  "scope": "Publiczny porządek obrad. Oceny to wstępne kryteria kontroli, nie potwierdzone wady pełnych projektów. Szczegółowe analizy niepubliczne można importować lokalnie.",
+  "sessions": [
+    {
+      "id": "IX-37",
+      "date": "2026-11-25",
+      "name": "XXXVII sesja",
+      "source": "https://urzad.malbork.pl/aktualnosci/xxxvii-sesja-rady-miasta-malborka.html",
+      "items": [
+        {
+          "id": "IX-37-5a",
+          "order": "5a",
+          "title": "X zmiana budżetu 2026",
+          "referent": "M. Pilarska-Downar",
+          "summary": "Aktualizacja planu finansowego na 2026 r.",
+          "strengths": [
+            "Aktualizacja planu",
+            "Kontrola wydatków przez radę",
+            "Odrębne rozstrzygnięcie budżetowe"
+          ],
+          "weaknesses": [
+            "Potrzebne pełne zestawienie zmian",
+            "Wymaga kontroli wpływu na deficyt",
+            "Wymaga porównania wcześniejszych nakładów"
+          ],
+          "questions": [
+            "Jak zmieniają się dochody, wydatki i deficyt?",
+            "Które zadania otrzymały już wcześniej dodatkowe środki?",
+            "Czy wydatki zostaną wykonane w terminie?"
+          ],
+          "issues": [],
+          "rating": "Wstępna kontrola",
+          "status": "Porządek publiczny – pełny projekt niezweryfikowany publicznie",
+          "source": "https://urzad.malbork.pl/aktualnosci/xxxvii-sesja-rady-miasta-malborka.html",
+          "relatedIds": [],
+          "version": "agenda-2026-11-19"
+        },
+        {
+          "id": "IX-37-5b",
+          "order": "5b",
+          "title": "Dotacja przedmiotowa dla OSiR",
+          "referent": "Piotr Sadowski",
+          "summary": "Ustalenie dotacji i zasad rozliczania obiektów sportowych.",
+          "strengths": [
+            "Jednolite zasady finansowania",
+            "Możliwość kontroli dotacji",
+            "Odrębne zasady rozliczeń"
+          ],
+          "weaknesses": [
+            "Potrzebna kalkulacja stawek",
+            "Potrzebne dane o przychodach własnych",
+            "Należy sprawdzić rok i termin obowiązywania"
+          ],
+          "questions": [
+            "Jak obliczono stawki dla każdego obiektu?",
+            "Jak dotacja zmienia się względem poprzedniego roku?",
+            "Jakie koszty i wyniki uzasadniają wysokość dotacji?"
+          ],
+          "issues": [],
+          "rating": "Wstępna kontrola",
+          "status": "Porządek publiczny – pełny projekt niezweryfikowany publicznie",
+          "source": "https://urzad.malbork.pl/aktualnosci/xxxvii-sesja-rady-miasta-malborka.html",
+          "relatedIds": [],
+          "version": "agenda-2026-11-19"
+        },
+        {
+          "id": "IX-37-5c",
+          "order": "5c",
+          "title": "Program współpracy z NGO na 2027",
+          "referent": "S. Starosta-Romańczuk",
+          "summary": "Roczny program współpracy z organizacjami pozarządowymi.",
+          "strengths": [
+            "Roczny plan współpracy",
+            "Przeprowadzono konsultacje",
+            "Możliwość oceny kierunków finansowania"
+          ],
+          "weaknesses": [
+            "Potrzebne porównanie finansowania rok do roku",
+            "Brak uwag nie przesądza o szerokim udziale",
+            "Potrzebne mierniki rezultatów"
+          ],
+          "questions": [
+            "Jak finansowanie zmienia się względem 2026?",
+            "Jakie rezultaty osiągnięto w poprzednim roku?",
+            "Jak zapewniono dostęp małym organizacjom?"
+          ],
+          "issues": [],
+          "rating": "Wstępna kontrola",
+          "status": "Porządek publiczny – pełny projekt niezweryfikowany publicznie",
+          "source": "https://urzad.malbork.pl/aktualnosci/xxxvii-sesja-rady-miasta-malborka.html",
+          "relatedIds": [],
+          "version": "agenda-2026-11-19"
+        },
+        {
+          "id": "IX-37-5d",
+          "order": "5d",
+          "title": "Zintegrowany plan inwestycyjny – Prądzyńskiego i Armii Krajowej",
+          "referent": "K. Kostrzewa-Rzoska",
+          "summary": "Rozpoczęcie procedury planistycznej, nie ostateczne zatwierdzenie inwestycji.",
+          "strengths": [
+            "Rada rozstrzyga o przystąpieniu",
+            "Możliwość negocjacji",
+            "Możliwość uwzględnienia interesu publicznego"
+          ],
+          "weaknesses": [
+            "Potrzebne parametry inwestycji",
+            "Potrzebna analiza ruchu",
+            "Potrzebny zakres inwestycji uzupełniających"
+          ],
+          "questions": [
+            "Co inwestor zamierza wybudować?",
+            "Jakie korzyści publiczne miasto chce wynegocjować?",
+            "Jakie obciążenie infrastruktury przewidziano?"
+          ],
+          "issues": [],
+          "rating": "Wstępna kontrola",
+          "status": "Porządek publiczny – pełny projekt niezweryfikowany publicznie",
+          "source": "https://urzad.malbork.pl/aktualnosci/xxxvii-sesja-rady-miasta-malborka.html",
+          "relatedIds": [],
+          "version": "agenda-2026-11-19"
+        },
+        {
+          "id": "IX-37-5e",
+          "order": "5e",
+          "title": "Przedstawiciel rady do negocjacji umowy urbanistycznej",
+          "referent": "K. Kostrzewa-Rzoska",
+          "summary": "Wyznaczenie osoby do negocjacji związanych z ZPI.",
+          "strengths": [
+            "Udział przedstawiciela rady",
+            "Reprezentacja interesów mieszkańców",
+            "Powiązanie z wcześniejszym punktem ZPI"
+          ],
+          "weaknesses": [
+            "Należy sprawdzić wskazanie osoby",
+            "Potrzebny mandat negocjacyjny",
+            "Potrzebne zasady raportowania"
+          ],
+          "questions": [
+            "Kogo proponuje się do negocjacji?",
+            "Jakie cele ma realizować przedstawiciel?",
+            "Kiedy rada otrzyma projekt zobowiązań?"
+          ],
+          "issues": [],
+          "rating": "Wstępna kontrola",
+          "status": "Porządek publiczny – pełny projekt niezweryfikowany publicznie",
+          "source": "https://urzad.malbork.pl/aktualnosci/xxxvii-sesja-rady-miasta-malborka.html",
+          "relatedIds": [],
+          "version": "agenda-2026-11-19"
+        },
+        {
+          "id": "IX-37-5f",
+          "order": "5f",
+          "title": "Porozumienie międzygminne – granice aglomeracji Malbork",
+          "referent": "K. Sztejner",
+          "summary": "Aktualizacja obszaru aglomeracji kanalizacyjnej.",
+          "strengths": [
+            "Koordynacja między gminami",
+            "Aktualizacja danych",
+            "Dostosowanie gospodarki ściekowej"
+          ],
+          "weaknesses": [
+            "Potrzebne aktualne mapy i wskaźniki",
+            "Potrzebny podział kosztów",
+            "Należy odróżnić rozbudowę sieci od zmiany granic"
+          ],
+          "questions": [
+            "Jakie tereny obejmie zmiana?",
+            "Czy planuje się podłączenia czy zmianę granic?",
+            "Jak gminy podzielą koszty?"
+          ],
+          "issues": [],
+          "rating": "Wstępna kontrola",
+          "status": "Porządek publiczny – pełny projekt niezweryfikowany publicznie",
+          "source": "https://urzad.malbork.pl/aktualnosci/xxxvii-sesja-rady-miasta-malborka.html",
+          "relatedIds": [],
+          "version": "agenda-2026-11-19"
+        },
+        {
+          "id": "IX-37-5g",
+          "order": "5g",
+          "title": "Rozpatrzenie skargi na działalność burmistrza",
+          "referent": "A. Ilarz",
+          "summary": "Rozstrzygnięcie skargi. Publiczny porządek nie przesądza wyniku.",
+          "strengths": [
+            "Kontrola organu wykonawczego",
+            "Możliwość wyjaśnienia zarzutów",
+            "Możliwość działań naprawczych"
+          ],
+          "weaknesses": [
+            "Potrzebne rozdzielenie zarzutów od dowodów",
+            "Potrzebna odpowiedź na każdy zarzut",
+            "Potrzebne ustalenie skutków rozstrzygnięcia"
+          ],
+          "questions": [
+            "Które zarzuty potwierdzono i jakimi dokumentami?",
+            "Jak odniesiono się do wyjaśnień burmistrza?",
+            "Jakie działania nastąpią po rozstrzygnięciu?"
+          ],
+          "issues": [],
+          "rating": "Wstępna kontrola",
+          "status": "Porządek publiczny – pełny projekt niezweryfikowany publicznie",
+          "source": "https://urzad.malbork.pl/aktualnosci/xxxvii-sesja-rady-miasta-malborka.html",
+          "relatedIds": [],
+          "version": "agenda-2026-11-19"
+        },
+        {
+          "id": "IX-37-5h",
+          "order": "5h",
+          "title": "Zmiana uchwały IV/29/2024 – Komisja Rewizyjna",
+          "referent": "Przewodniczący Rady",
+          "summary": "Zmiana składu komisji rewizyjnej.",
+          "strengths": [
+            "Aktualizacja składu",
+            "Możliwość weryfikacji reprezentacji",
+            "Uporządkowanie podstawy działania"
+          ],
+          "weaknesses": [
+            "Należy sprawdzić reprezentację klubów",
+            "Potrzebne porównanie pełnego składu",
+            "Należy ocenić wpływ na plan kontroli"
+          ],
+          "questions": [
+            "Czy wszystkie kluby są reprezentowane?",
+            "Jak zmienia się skład względem ostatniej uchwały?",
+            "Czy plan kontroli pozostaje wykonalny?"
+          ],
+          "issues": [],
+          "rating": "Wstępna kontrola",
+          "status": "Porządek publiczny – pełny projekt niezweryfikowany publicznie",
+          "source": "https://urzad.malbork.pl/aktualnosci/xxxvii-sesja-rady-miasta-malborka.html",
+          "relatedIds": [
+            "IV/29/2024"
+          ],
+          "version": "agenda-2026-11-19"
+        },
+        {
+          "id": "IX-37-5i",
+          "order": "5i",
+          "title": "Zmiana uchwały IV/31/2024 – Komisja Finansów",
+          "referent": "Przewodniczący Rady",
+          "summary": "Zmiana składu komisji finansów i rozwoju.",
+          "strengths": [
+            "Aktualizacja składu",
+            "Jednoznaczne rozstrzygnięcie rady",
+            "Możliwość zapewnienia ciągłości"
+          ],
+          "weaknesses": [
+            "Potrzebne porównanie z ostatnim składem",
+            "Należy ocenić obciążenie komisji",
+            "Należy sprawdzić wpływ na prace budżetowe"
+          ],
+          "questions": [
+            "Jak zmienia się skład względem ostatniej uchwały?",
+            "Czy planuje się uzupełnienie komisji?",
+            "Czy zmiana wpłynie na opiniowanie budżetu?"
+          ],
+          "issues": [],
+          "rating": "Wstępna kontrola",
+          "status": "Porządek publiczny – pełny projekt niezweryfikowany publicznie",
+          "source": "https://urzad.malbork.pl/aktualnosci/xxxvii-sesja-rady-miasta-malborka.html",
+          "relatedIds": [
+            "IV/31/2024"
+          ],
+          "version": "agenda-2026-11-19"
+        }
+      ]
+    }
+  ],
+  "history": []
+}
