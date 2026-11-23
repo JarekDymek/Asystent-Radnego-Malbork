@@ -37,3 +37,10 @@ Ważne: uaktualnienie baz w Bibliotece ChatGPT **nie aktualizuje automatycznie**
 Program wskazuje relacje i możliwe sprzeczności; nie zastępuje opinii radcy prawnego, rozstrzygnięć wojewody ani RIO. Przynależność do komitetu wyborczego nie oznacza automatycznie członkostwa w koalicji. Dokumenty pochodzą z materiałów projektu; pełne teksty nie są dostępne dla każdej uchwały. Artykułowanie podobieństwa tematycznego nie jest dowodem sprzeczności.
 
 W repozytorium nie należy publikować niezweryfikowanych danych osobowych, poufnych wiadomości ani całych nieprzejrzanych materiałów źródłowych.
+
+
+## Analiza uchwał — UI 1.64.0
+
+Zakładka **Analiza uchwał** w nagłówku otwiera publiczny indeks sesji i łączy się z istniejącym katalogiem (`window.ASM_DATA`: audit_acts, resolutions, audit_relations, audit_provisions). Dane katalogu i SQLite nadal w wersji 1.63.0. Publiczny porządek XXXVII sesji zawiera 9 pozycji; wstępne oceny nie są potwierdzonymi ustaleniami o pełnych projektach. Pełny raport niepubliczny można zaimportować lokalnie w formacie JSON (schema 1, przykład: `data/analiza-uchwal.json`); import nie wysyła plików na serwer. Każda pozycja ma ID, wersję, referenta, streszczenie, ocenę, mocne i słabe strony, pytania, błędy, status, źródło. Pole `relatedIds` pozwala powiązać numer uchwały, a pole `text` zawiera pełny tekst do porównania. `history[]`: id, title, date, source, text (opcjonalnie). Moduł pokazuje podobieństwo tematu, relacje oraz różnice paragrafów i kwot, kiedy dostępne są oba teksty; nie uznaje podobieństwa za dowód duplikatu.
+
+Publikacja kolejnych zweryfikowanych analiz: dopisz sesję/nową wersję do `data/analiza-uchwal.json`, zachowaj dotychczasowe rekordy, zaktualizuj updated. Przeglądarka odświeża indeks przy wejściu i odzyskaniu połączenia. Monitor BIP/Gmail wymaga zapisania zweryfikowanej publicznej projekcji przez wydawcę, nie jest automatycznym silnikiem AI przeglądarki. Nie publikować prywatnych materiałów. Pytania i notatki są lokalne.
