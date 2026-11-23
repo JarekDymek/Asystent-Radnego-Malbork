@@ -1,9 +1,9 @@
 {
-  "version": "1.63.0",
-  "ui_version": "1.63.0",
+  "version": "1.64.0",
+  "ui_version": "1.64.0",
   "data_version": "1.63.0",
   "revision": "2026-11-22",
-  "published": "2026-11-23",
+  "published": "2026-11-24",
   "dataset": "IX kadencja Rady Miasta Malborka · publiczna projekcja master v1.63",
   "payload": "data/katalog-v1.63.0.html.gz",
   "payload_sha256": "9f9b8c357fbbc3d096a91132d724824fc41f103d65f60f58e1894c966dcce431",
@@ -40,5 +40,10 @@
         "topic": "Ulica Targowa — relacja prasowa, nie potwierdzony dokument urzędowy"
       }
     ]
+  },
+  "analysis": {
+    "schema": 1,
+    "path": "data/analiza-uchwal.json",
+    "scope": "public agenda + local private import"
   }
 }
