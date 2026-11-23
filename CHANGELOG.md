@@ -1,5 +1,11 @@
 # Asystent Radnego — zmiany
 
+## 1.64.1 (2026-11-24)
+
+- Archiwum w zakładce Analiza uchwał: 255 aktów z 35 sesji, istniejące ustalenia audytu i relacje, jawne oznaczenia braków.
+- Odczyt i weryfikacja pakietu katalogowego również przy bezpośrednim otwarciu modułu.
+- Zachowano wersję danych 1.63.0.
+
 ## 1.64.0 (2026-11-24)
 
 - Zakładka Analiza uchwał, publiczny porządek XXXVII sesji, lokalny import raportów, historia wersji, pytania i notatki.
