@@ -1,9 +1,9 @@
 {
-  "version": "1.64.1",
-  "ui_version": "1.64.1",
+  "version": "1.64.2",
+  "ui_version": "1.64.2",
   "data_version": "1.63.0",
   "revision": "2026-11-22",
-  "published": "2026-11-24",
+  "published": "2026-11-25",
   "dataset": "IX kadencja Rady Miasta Malborka · publiczna projekcja master v1.63",
   "payload": "data/katalog-v1.63.0.html.gz",
   "payload_sha256": "9f9b8c357fbbc3d096a91132d724824fc41f103d65f60f58e1894c966dcce431",

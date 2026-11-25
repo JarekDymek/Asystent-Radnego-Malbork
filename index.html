@@ -34,7 +34,7 @@ body.has-message #appFrame{height:calc(100dvh - 98px)}
 @media(max-width:450px){#newDataButton{font-size:11px;padding:6px}.brand strong{font-size:11px}.new-data-panel{top:65px}}
 
 body{display:flex;flex-direction:column;height:100dvh}#appHeader,#message,#moduleTabs{flex-shrink:0}#moduleTabs{display:flex;gap:8px;padding:6px 12px;background:#143b5b;z-index:2}#moduleTabs .btn{min-height:36px;padding:5px 12px}#moduleTabs .btn[aria-selected=true]{background:#116652;border-color:#6bb29b}#appFrame,body.has-message #appFrame,#analysisFrame{border:0;width:100%;height:auto;min-height:0;flex:1;display:block;background:#f4f6fa}#placeholder{position:static;flex:1;min-height:0}#placeholder:not([hidden])+ #appFrame{display:none}
-#moduleTabs{flex-wrap:wrap}#originals{box-sizing:border-box;width:min(620px,calc(100% - 24px));max-height:85dvh;overflow:auto;color:#14314c;background:#f4f7fc;border:1px solid #bdd1e1;border-radius:12px;padding:16px}#originals::backdrop{background:#07152399}#originals form[method=dialog]{float:right;margin-left:10px}#originals label{display:grid;gap:4px;margin:8px 0}#originals input{width:100%;font:inherit;padding:6px}#originals li{margin-bottom:8px;overflow-wrap:anywhere}#originals a{color:#124c7d}#originals summary{cursor:pointer}
+#moduleTabs{flex-wrap:wrap}
 </style>
 </head>
 <body>
@@ -47,98 +47,15 @@ body{display:flex;flex-direction:column;height:100dvh}#appHeader,#message,#modul
 </header>
 <div id="message" role="status" hidden></div>
 <section id="newDataPanel" class="new-data-panel" hidden role="region" aria-label="Informacje o aktualizacji bazy"><div class="new-data-inner"><button type="button" id="closeNews" class="btn">Zamknij / przeczytane</button><h2 id="newsTitle"></h2><p id="newsSummary"></p><p id="newsNotice"></p><ul id="newsSamples"></ul><small>Oryginały źródeł są w prywatnej Bibliotece. Tu udostępniane są tylko metadane.</small></div></section>
-<nav id="moduleTabs" aria-label="Moduły aplikacji"><button type="button" class="btn" id="catalogButton" aria-selected="true">Katalog</button><button type="button" class="btn" id="analysisButton" aria-selected="false">Analiza uchwał</button><button type="button" class="btn" id="originalsButton">Interpelacje · oryginały</button></nav>
+<nav id="moduleTabs" aria-label="Moduły aplikacji"><button type="button" class="btn" id="catalogButton" aria-selected="true">Katalog</button><button type="button" class="btn" id="analysisButton" aria-selected="false">Analiza uchwał</button></nav>
 <div id="placeholder"><div class="loader" role="progressbar" aria-label="Wczytywanie bazy"></div><strong>Otwieranie katalogu Rady Miasta Malborka</strong><p>Wczytuję zweryfikowaną bazę interpelacji, głosowań i uchwał. Po pierwszym uruchomieniu aplikacja działa również bez internetu.</p></div>
 <iframe title="Wyszukiwarka i audyt uchwał" id="appFrame" loading="eager"></iframe>
 <iframe id="analysisFrame" title="Analiza uchwał" hidden></iframe>
-<dialog id="originals" aria-labelledby="originalsTitle">
-<form method="dialog"><button class="btn">Zamknij</button></form>
-<h2 id="originalsTitle">Oryginały interpelacji</h2>
-<p>Zapisz odnośnik do dokumentu w BIP lub w Bibliotece ChatGPT. Lista jest zapisywana w tej przeglądarce.</p>
-<form id="addOriginal"><label>Sesja i temat <input id="sourceTitle" required maxlength="200"></label><label>Adres HTTPS <input id="sourceUrl" type="url" required></label><button class="btn">Dodaj odnośnik</button></form>
-<p id="sourceStatus" role="status"></p><ul id="sourceList"></ul>
-<label>Otwórz dokument z urządzenia <input id="sourceFile" type="file" accept=".pdf,.png,.jpg,.jpeg,.docx,.odt"></label>
-<p><a id="sourcePreview" target="_blank" rel="noopener" hidden></a></p>
-<details><summary>Standard interpelacji i dobór tematów</summary><p>Osobna strona A4 na każde pismo. W prawym górnym rogu Burmistrz Miasta Malborka za pośrednictwem Przewodniczącego Rady Miasta Malborka. Pośrodku podkreślony tytuł „ZGŁOSZENIE INTERPELACJI” i imię oraz nazwisko radnego. Niżej temat, stan faktyczny i ponumerowane pytania, osobne uzasadnienie znaczenia sprawy, załączniki, data i miejsce na podpis.</p><p>Priorytety to dostęp do sportu i rekreacji, wsparcie dzieci i młodzieży, bezpieczeństwo i dobrostan mieszkańców oraz ciąg pieszo-rowerowy od końca bulwaru nad Nogatem w kierunku śluzy Szonowo. Przed propozycją sprawdź wydarzenia od poprzedniej sesji, wcześniejsze pisma i odpowiedzi oraz kompetencje miasta. Pytaj o działania, odpowiedzialność, dokumenty, terminy i finansowanie.</p></details>
-</dialog>
 <script>
 'use strict';
 const q=id=>document.getElementById(id);
 const base='./';
 
-const originals=q('originals'), sourceKey='asm_interpellation_originals';
-const sourceStatus=q('sourceStatus');
-let previewUrl;
-function sourceHref(value){
- try{
-  const url=new URL(value);
-  return url.protocol==='https:'&&!url.username&&!url.password?url.href:null;
- }catch{return null}
-}
-function sourceRecords(){
- const records=JSON.parse(localStorage.getItem(sourceKey)||'[]');
- return Array.isArray(records)?records.filter(x=>x&&typeof x.title==='string'&&sourceHref(x.href)):[];
-}
-function drawSources(){
- const list=q('sourceList'), records=sourceRecords();
- list.replaceChildren();
- for(const [index,record] of records.entries()){
-  const item=document.createElement('li'), link=document.createElement('a');
-  link.textContent=record.title; link.href=record.href; link.target='_blank'; link.rel='noopener noreferrer';
-  const remove=document.createElement('button');
-  remove.type='button'; remove.textContent='Usuń';
-  remove.onclick=()=>{
-   try{localStorage.setItem(sourceKey,JSON.stringify(records.filter((_,i)=>i!==index)));drawSources()}
-   catch{sourceStatus.textContent='Nie udało się usunąć odnośnika.'}
-  };
-  item.append(link,' ',remove); list.append(item);
- }
- if(!records.length){
-  const item=document.createElement('li');
-  item.textContent='Brak zapisanych odnośników.';
-  list.append(item);
- }
-}
-q('originalsButton').onclick=()=>{
- sourceStatus.textContent='';
- try{drawSources()}catch{sourceStatus.textContent='Nie udało się odczytać zapisanych odnośników.'}
- originals.showModal();
-};
-q('addOriginal').onsubmit=event=>{
- event.preventDefault();
- const title=q('sourceTitle').value.trim(), href=sourceHref(q('sourceUrl').value.trim());
- if(!title||!href){sourceStatus.textContent='Wpisz temat i poprawny adres HTTPS.';return}
- try{
-  const records=sourceRecords();
-  if(!records.some(x=>x.href===href&&x.title===title)){
-   localStorage.setItem(sourceKey,JSON.stringify([...records,{title,href}]));
-  }
-  event.currentTarget.reset();drawSources();sourceStatus.textContent='Zapisano odnośnik.';
- }catch{sourceStatus.textContent='Nie udało się zapisać odnośnika.'}
-};
-const preview=q('sourcePreview');
-function clearSourcePreview(){
- if(previewUrl)URL.revokeObjectURL(previewUrl);
- previewUrl=undefined;
- preview.hidden=true;
- preview.removeAttribute('href');
- preview.removeAttribute('download');
-}
-q('sourceFile').onchange=event=>{
- clearSourcePreview();
- const file=event.target.files[0];
- if(!file)return;
- const type=/\.pdf$/i.test(file.name)?'application/pdf':/\.png$/i.test(file.name)?'image/png':/\.jpe?g$/i.test(file.name)?'image/jpeg':'';
- if(!type&&!/\.(docx|odt)$/i.test(file.name)){
-  sourceStatus.textContent='Wybierz PDF, obraz, DOCX lub ODT.';return
- }
- previewUrl=URL.createObjectURL(file.slice(0,file.size,type||'application/octet-stream'));
- preview.href=previewUrl;preview.textContent=(type?'Otwórz ':'Pobierz ')+file.name;
- if(!type)preview.download=file.name;
- preview.hidden=false;
- sourceStatus.textContent='';
-};
-originals.addEventListener('close',()=>{clearSourcePreview();q('sourceFile').value=''});
 
 let activeVersion=null, latest=null, deferredInstall=null, updateAvailable=false, busy=false, currentDigest=null;
 const status=(message,level='info')=>{
